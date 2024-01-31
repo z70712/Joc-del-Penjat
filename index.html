@@ -11,67 +11,109 @@
             var correcte = 0;
             var bones = "";
             var dolentes = "";
+            
             function Comprovar() {
-                if ((document.getElementById("valor").value >= "a") && (document.getElementById("valor").value <= "m"))
+                var lletra = document.getElementById("valor").value;
+                document.getElementById("valor").value = "";
+                lletra = lletra.toLowerCase();
+                            
+            switch (lletra) {
+                case "á":
+                case "à":
+                    lletra = "a";
+                    break;
+                case "é":
+                case "è":
+                    lletra = "e";
+                    break;
+                case "í":
+                case "ì":
+                case "ï":
+                    lletra = "i";
+                    break;
+                case "ó":
+                case "ò":
+                    lletra = "o";
+                    break;
+                case "ú":
+                case "ù":
+                case "ü":
+                    lletra = "u";
+            }
+                
+                if (((lletra >= "a") && (lletra <= "m")) || (lletra == "ç" ))
                 {
                     alert("Has encertat!");
-                    correcte = correcte +1;
-                    if (correcte == 7){
-                        alert("Has encertat 7 lletres!");
-                    }
-                    if (bones == ""){
-                        bones = bones + document.getElementById("valor").value;
-                }
-                    else {
-                        bones = bones + ", " + document.getElementById("valor").value;
-                    }
+                    correcte = correcte + 1;
+                        if (correcte == 7){
+                            alert("Has encertat 7 lletres!");
+                        }
+                        if (bones == ""){
+                            bones = bones + lletra;
+                        }
+                        else {
+                            bones = bones + ", " + lletra;
+                        }
                     document.getElementById("bones").innerHTML =  bones;
-                } 
-                else 
+                }
+                
+                else if (((lletra >= "n") && (lletra <= "z")) || (lletra == "ñ" ))
                 {
                     alert("Has fallat!");
                     vides = vides -1;
-                    if (vides == 0){
-                        alert("Has fallat tots els intents!");
-                         Final();
-                    }
-                    if (vides <= 3){
-                        document.getElementById("vida").style.color = "red";
-                    }
-                    document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;
-                    if (dolentes == ""){
-                        dolentes = dolentes + document.getElementById("valor").value;
+                        if (vides == 0){
+                            alert("Has fallat tots els intents!");
+                            Final();
+                        }
+                        if (vides <= 3){
+                            document.getElementById("vida").style.color = "red";
+                        }
+                        document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;
+                        
+                        if (dolentes == ""){
+                            dolentes = dolentes + lletra;
+                        }
+                        else {
+                            dolentes = dolentes + ", " + lletra;
+                        }
+                        document.getElementById("dolentes").innerHTML =  dolentes;
                 }
-                    else {
-                        dolentes = dolentes + ", " + document.getElementById("valor").value;
-                    }
-                    document.getElementById("dolentes").innerHTML =  dolentes;
+                
+                else {
+                    alert("Caracter incorrecte!");
                 }
-                document.getElementById("valor").value = "";
             }
-             window.onkeypress = function(evobject) { //Funció clicar tecla intro
+            
+            window.onkeypress = function(evobject) { //Funció clicar tecla intro
                 if (evobject.keyCode == 13 || evobject.keyCode == 32 ) {
                     Comprovar();
                 }
             }
+            
             function Final() {
-            document.getElementById("valor").disabled = true;
-            document.getElementById("boto").disabled = true;
-        }
+                document.getElementById("valor").disabled = true;
+                document.getElementById("boto").disabled = true;
+            }
         </script>
     </head>
+    
     <body style="background-color:#E0EFF9">
         <h1 style="background-color:#BBDAEE">Prototip Joc del Penjat</h1>
         <input type="text" placeholder="Escriu una lletra minúscula" id="valor">
         <button onclick="Comprovar();" id="boto">Comprovar</button>
+        
         <h2>Paraula</h2>
         <p id="bones">_______</p>
+        
         <h2>Vides</h2>
         <p id="vida">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7</p>
+        
         <h2>Lletres</h2>
         <p id="dolentes">_______</p>
+        
         <b>Crèdits:</b>
         <a href="https://prosselloe.wordpress.com/2022/11/22/el-joc-del-penjat-on-scratch/">El joc del penjat on Scratch</a>
         <h4> Fet per: David Janer </h4>
     </body>
+    
 </html>
