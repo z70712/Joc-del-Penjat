@@ -8,11 +8,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
             var vides = 7;
+            var correcte = 0;
             var bones = "";
             var dolentes = "";
             function Comprovar() {
                 if ((document.getElementById("valor").value >= "a") && (document.getElementById("valor").value <= "m"))
                 {
+                    alert("Has encertat!");
+                    correcte = correcte +1;
+                    if (correcte == 7){
+                        alert("Has encertat 7 lletres!");
+                    }
                     if (bones == ""){
                         bones = bones + document.getElementById("valor").value;
                 }
@@ -25,6 +31,13 @@
                 {
                     alert("Has fallat!");
                     vides = vides -1;
+                    if (vides == 0){
+                        alert("Has fallat tots els intents!");
+                         Final();
+                    }
+                    if (vides <= 3){
+                        document.getElementById("vida").style.color = "red";
+                    }
                     document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;
                     if (dolentes == ""){
                         dolentes = dolentes + document.getElementById("valor").value;
@@ -41,12 +54,16 @@
                     Comprovar();
                 }
             }
+            function Final() {
+            document.getElementById("valor").disabled = true;
+            document.getElementById("boto").disabled = true;
+        }
         </script>
     </head>
     <body style="background-color:#E0EFF9">
         <h1 style="background-color:#BBDAEE">Prototip Joc del Penjat</h1>
         <input type="text" placeholder="Escriu una lletra minúscula" id="valor">
-        <button onclick="Comprovar();">Comprovar</button>
+        <button onclick="Comprovar();" id="boto">Comprovar</button>
         <h2>Paraula</h2>
         <p id="bones">_______</p>
         <h2>Vides</h2>
@@ -55,5 +72,6 @@
         <p id="dolentes">_______</p>
         <b>Crèdits:</b>
         <a href="https://prosselloe.wordpress.com/2022/11/22/el-joc-del-penjat-on-scratch/">El joc del penjat on Scratch</a>
+        <h4> Fet per: David Janer </h4>
     </body>
 </html>
