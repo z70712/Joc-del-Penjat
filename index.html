@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+-->
+<html>
+    <head>
+        <title>Prototip Joc del Penjat</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            var vides = 7;
+            var bones = "";
+            var dolentes = "";
+            function Comprovar() {
+                if ((document.getElementById("valor").value >= "a") && (document.getElementById("valor").value <= "m"))
+                {
+                    if (bones == ""){
+                        bones = bones + document.getElementById("valor").value;
+                }
+                    else {
+                        bones = bones + ", " + document.getElementById("valor").value;
+                    }
+                    document.getElementById("bones").innerHTML =  bones;
+                } 
+                else 
+                {
+                    alert("Has fallat!");
+                    vides = vides -1;
+                    document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;
+                    if (dolentes == ""){
+                        dolentes = dolentes + document.getElementById("valor").value;
+                }
+                    else {
+                        dolentes = dolentes + ", " + document.getElementById("valor").value;
+                    }
+                    document.getElementById("dolentes").innerHTML =  dolentes;
+                }
+                document.getElementById("valor").value = "";
+            }
+             window.onkeypress = function(evobject) { //Funció clicar tecla intro
+                if (evobject.keyCode == 13 || evobject.keyCode == 32 ) {
+                    Comprovar();
+                }
+            }
+        </script>
+    </head>
+    <body style="background-color:#E0EFF9">
+        <h1 style="background-color:#BBDAEE">Prototip Joc del Penjat</h1>
+        <input type="text" placeholder="Escriu una lletra minúscula" id="valor">
+        <button onclick="Comprovar();">Comprovar</button>
+        <h2>Paraula</h2>
+        <p id="bones">_______</p>
+        <h2>Vides</h2>
+        <p id="vida">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7</p>
+        <h2>Lletres</h2>
+        <p id="dolentes">_______</p>
+        <b>Crèdits:</b>
+        <a href="https://prosselloe.wordpress.com/2022/11/22/el-joc-del-penjat-on-scratch/">El joc del penjat on Scratch</a>
+    </body>
+</html>
