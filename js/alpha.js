@@ -95,6 +95,8 @@ var vides = 7;
            //Definim la funció que atura el joc quan s'han perdut totes les vides           
             function Alert() {
                 alert("Anam a la quinta forca?");
+                document.getElementById('inici').play();
+                document.getElementById("Audios").hidden = true;                
             }
            //Definim la funció que es mostra quan s'obri el joc
 
