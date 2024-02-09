@@ -14,6 +14,11 @@
             //Establim variables
 
             function Comprovar() {
+                if (document.getElementById("valor").value == ""){
+                    alert("Introdueix algun caràcter per jugar!");                    
+                }
+            //Es comprova si no s'ha introduit algun caràcter
+            
                 var lletra = document.getElementById("valor").value;
                 document.getElementById("valor").value = "";
                 lletra = lletra.toLowerCase();
@@ -41,8 +46,7 @@
                     lletra = "u";
                     break;
            //Establim el canvi de accents i dieresis a la lletra corresponent    
-            }
-                
+            }    
                 if (((lletra >= "a") && (lletra <= "m")) || (lletra == "ç" ))
                 {
                     alert("Has encertat!");
@@ -84,8 +88,8 @@
                 }
            //Comprovam si la lletra introduida es troba entre la n i la z incloent la ñ  
                 
-                else {
-                    alert("Caracter incorrecte!");
+                else if (lletra !== ""){
+                    alert("Caràcter incorrecte!");
                 }
            //Si no s'ha complir cap condició de les anteriors, concluim que el valor introduit es un caracter incorrecte  
             }
@@ -107,7 +111,7 @@
     
     <body style="background-color:#E0EFF9">
         <h1 style="background-color:#BBDAEE">Prototip Joc del Penjat</h1>
-        <input type="text" placeholder="Escriu una lletra minúscula" id="valor" maxlength="1">
+        <input type="text" placeholder="Escriu una lletra en minúscula" id="valor" maxlength="1">
         <button onclick="Comprovar();" id="boto">Comprovar</button>
         
         <h2>Paraula</h2>
