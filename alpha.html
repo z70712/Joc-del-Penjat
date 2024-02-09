@@ -12,10 +12,6 @@
     
     <body style="background-image: url('img/Desert.png');
           background-size: 640px 480px; background-repeat: no-repeat" onload="Alert();">
-        <audio controls>
-            <source src="aud/mystery.mp3" type="audio/mpeg">
-            Your browser does not support the <code>audio</code> tag.
-        </audio>
         <h1 style="background-color:#BBDAEE">Alpha Joc del Penjat</h1>
         <input type="text" placeholder="Escriu una lletra minúscula" id="valor" maxlength="1">
         <button onclick="Comprovar();" id="boto">Comprovar</button>
@@ -34,9 +30,11 @@
         <h4> Fet per: David Janer </h4>
            <!--Cream els texts i estils de la pàgina-->
         
-           <div id='Audios'> 
-               <audio src="aud/mystery.mp3" type="audio/mpeg"></audio>
-           </div>
+        <div id='Audios'> 
+            <audio id="inici">
+                <source src="aud/mystery.mp3" type="audio/mpeg">
+            </audio>
+        </div>
     </body>
     
 </html>
