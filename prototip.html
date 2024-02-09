@@ -49,6 +49,7 @@
                     correcte = correcte + 1;
                         if (correcte == 7){
                             alert("Has encertat 7 lletres!");
+                            Final();
                         }
                         if (bones == ""){
                             bones = bones + lletra;
@@ -106,7 +107,7 @@
     
     <body style="background-color:#E0EFF9">
         <h1 style="background-color:#BBDAEE">Prototip Joc del Penjat</h1>
-        <input type="text" placeholder="Escriu una lletra minúscula" id="valor">
+        <input type="text" placeholder="Escriu una lletra minúscula" id="valor" maxlength="1">
         <button onclick="Comprovar();" id="boto">Comprovar</button>
         
         <h2>Paraula</h2>
