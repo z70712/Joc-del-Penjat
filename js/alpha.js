@@ -5,6 +5,11 @@ var vides = 7;
             //Establim variables
 
             function Comprovar() {
+                if (document.getElementById("valor").value == ""){
+                    alert("Introdueix algun caràcter per jugar!");                    
+                }
+            //Es comprova si no s'ha introduit algun caràcter
+            
                 var lletra = document.getElementById("valor").value;
                 document.getElementById("valor").value = "";
                 lletra = lletra.toLowerCase();
@@ -75,8 +80,8 @@ var vides = 7;
                 }
            //Comprovam si la lletra introduida es troba entre la n i la z incloent la ñ  
                 
-                else {
-                    alert("Caracter incorrecte!");
+                else if (lletra !== ""){
+                    alert("Caràcter incorrecte!");
                 }
            //Si no s'ha complir cap condició de les anteriors, concluim que el valor introduit es un caracter incorrecte  
             }
