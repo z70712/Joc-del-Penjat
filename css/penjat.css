@@ -3,6 +3,27 @@ p {
 }
 
 h2 {
-  background-color:#BBDAEE;
   color: black;
 }
+
+body {
+    background:linear-gradient(#aaa 0, #ddd 10px, #fff 55px);
+    border:1px solid black;
+    padding:10px 20px;
+    box-shadow:5px 0px 30px #000;
+    border-radius:8px;
+    margin:0;
+    width:640px;
+    height:480px;
+}
+
+#Idioma { position:relative; top:-386px; left:318px; }
+#Sons { position:relative; top:-380px; left:558px; }
+#Pista { position:relative; top:-350px; left:130px; }
+#Segons { position:relative; top:-285px; left:130px; }
+#Punts { position:relative; top:-200px; left:90px; }
+#Guia { position:relative; top:-305px; left:260px; }
+#Caminar { position:relative; top:-440px; left:430px; }
+#Rotar { position:relative; top:-400px; left:430px; }
+#Teclat { position:relative; top:-360px; left:293px; }
+#Audios { position:relative; top:-480px; left:0px; }
