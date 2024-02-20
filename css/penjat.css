@@ -3,7 +3,7 @@ p {
 }
 
 h2 {
-  color: black;
+  color: white;
 }
 
 body {
@@ -27,3 +27,4 @@ body {
 #Rotar { position:relative; top:-400px; left:430px; }
 #Teclat { position:relative; top:-360px; left:293px; }
 #Audios { position:relative; top:-480px; left:0px; }
+#Imatges { position:relative; top:-350px; left:300px; }
