@@ -11,7 +11,7 @@
     </head>
     
     <body style="background-image: url('img/Desert.png');
-          background-size: 640px 480px; background-repeat: no-repeat" onload="Alert();">
+          background-size: 640px 480px; background-repeat: no-repeat" onload="Alert();Amaga();">
         <h1>Alpha Joc del Penjat</h1>
         <input type="text" placeholder="Escriu una lletra minúscula" id="valor" maxlength="1">
         <button onclick="Comprovar();" id="boto">Comprovar</button>
@@ -34,6 +34,15 @@
             <audio id="inici">
                 <source src="aud/mystery.mp3" type="audio/mpeg">
             </audio>
+        </div>
+        <div id='Imatges'> 
+            <img src="img/ahorcado_6.png" id="ahorcado_6" style="width:280px; height: 270px;" title="Et queden 6 vides!">
+            <img src="img/ahorcado_5.png" id="ahorcado_5" style="width:280px; height: 270px;" title="Et queden 5 vides!">
+            <img src="img/ahorcado_4.png" id="ahorcado_4" style="width:280px; height: 270px;" title="Et queden 4 vides!">
+            <img src="img/ahorcado_3.png" id="ahorcado_3" style="width:280px; height: 270px;" title="Et queden 3 vides!">
+            <img src="img/ahorcado_2.png" id="ahorcado_2" style="width:280px; height: 270px;" title="Et queden 2 vides!">
+            <img src="img/ahorcado_1.png" id="ahorcado_1" style="width:280px; height: 270px;" title="Et queden 1 vida!">
+            <img src="img/ahorcado_0.png" id="ahorcado_0" style="width:280px; height: 270px;" title="No et queda cap vida!">
         </div>
     </body>
     
