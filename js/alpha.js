@@ -1,4 +1,4 @@
-var vides = 7;
+            var vides = 7;
             var correcte = 0;
             var bones = "";
             var dolentes = "";
@@ -61,6 +61,7 @@ var vides = 7;
                 {
                     alert("Has fallat!");
                     vides = vides -1;
+                    MostraImg()
                         if (vides == 0){
                             alert("Has fallat tots els intents!");
                             Final();
@@ -104,5 +105,44 @@ var vides = 7;
                 document.getElementById("Audios").hidden = true;                
             }
            //Definim la funció que es mostra quan s'obri el joc
-
+            function MostraImg() {
+                switch (vides) {
+                    case 6:
+                        document.getElementById("ahorcado_6").hidden = false;
+                        break;
+                     case 5:
+                        document.getElementById("ahorcado_5").hidden = false;
+                        document.getElementById("ahorcado_6").hidden = true;
+                        break;
+                     case 4:
+                        document.getElementById("ahorcado_4").hidden = false;
+                        document.getElementById("ahorcado_5").hidden = true;
+                        break;
+                     case 3:
+                        document.getElementById("ahorcado_3").hidden = false;
+                        document.getElementById("ahorcado_4").hidden = true;
+                        break;
+                     case 2:
+                        document.getElementById("ahorcado_2").hidden = false;
+                        document.getElementById("ahorcado_3").hidden = true;
+                        break;
+                     case 1:
+                        document.getElementById("ahorcado_1").hidden = false;
+                        document.getElementById("ahorcado_2").hidden = true;
+                        break;
+                     case 0:
+                        document.getElementById("ahorcado_0").hidden = false;
+                        document.getElementById("ahorcado_1").hidden = true;
+                        break;
+                }
+            }
+            function Amaga() {
+                document.getElementById("ahorcado_0").hidden = true;
+                document.getElementById("ahorcado_1").hidden = true;
+                document.getElementById("ahorcado_2").hidden = true;
+                document.getElementById("ahorcado_3").hidden = true;
+                document.getElementById("ahorcado_4").hidden = true;
+                document.getElementById("ahorcado_5").hidden = true;
+                document.getElementById("ahorcado_6").hidden = true;
+            }
 
