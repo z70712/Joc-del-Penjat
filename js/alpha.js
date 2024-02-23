@@ -61,7 +61,7 @@
                 {
                     alert("Has fallat!");
                     vides = vides -1;
-                    MostraImg()
+                    MostraImg();
                         if (vides == 0){
                             alert("Has fallat tots els intents!");
                             Final();
@@ -100,6 +100,13 @@
             }
            //Definim la funció que atura el joc quan s'han perdut totes les vides           
             function Alert() {
+                document.getElementById("ahorcado_0").hidden = true;
+                document.getElementById("ahorcado_1").hidden = true;
+                document.getElementById("ahorcado_2").hidden = true;
+                document.getElementById("ahorcado_3").hidden = true;
+                document.getElementById("ahorcado_4").hidden = true;
+                document.getElementById("ahorcado_5").hidden = true;
+                document.getElementById("ahorcado_6").hidden = true;
                 alert("Anam a la quinta forca?");
                 document.getElementById('inici').play();
                 document.getElementById("Audios").hidden = true;                
@@ -136,13 +143,3 @@
                         break;
                 }
             }
-            function Amaga() {
-                document.getElementById("ahorcado_0").hidden = true;
-                document.getElementById("ahorcado_1").hidden = true;
-                document.getElementById("ahorcado_2").hidden = true;
-                document.getElementById("ahorcado_3").hidden = true;
-                document.getElementById("ahorcado_4").hidden = true;
-                document.getElementById("ahorcado_5").hidden = true;
-                document.getElementById("ahorcado_6").hidden = true;
-            }
-
