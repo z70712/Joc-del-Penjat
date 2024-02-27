@@ -99,7 +99,7 @@
                 document.getElementById("boto").disabled = true;
             }
            //Definim la funció que atura el joc quan s'han perdut totes les vides           
-            function Alert() {
+            function Inici() {
                 document.getElementById("ahorcado_0").hidden = true;
                 document.getElementById("ahorcado_1").hidden = true;
                 document.getElementById("ahorcado_2").hidden = true;
@@ -107,8 +107,8 @@
                 document.getElementById("ahorcado_4").hidden = true;
                 document.getElementById("ahorcado_5").hidden = true;
                 document.getElementById("ahorcado_6").hidden = true;
-                alert("Anam a la quinta forca?");
                 document.getElementById('inici').play();
+                alert("Anam a la quinta forca?");
                 document.getElementById("Audios").hidden = true;                
             }
            //Definim la funció que es mostra quan s'obri el joc
@@ -143,3 +143,11 @@
                         break;
                 }
             }
+            
+            //Temporitzador
+            var seconds = 0;
+		function timer(){
+                    seconds = seconds + 1;
+                    document.getElementById("counter").innerHTML = seconds;
+		}
+		setInterval(timer, 1000);
