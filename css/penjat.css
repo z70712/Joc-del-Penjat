@@ -1,9 +1,9 @@
 p {
-  color: white;
+  color: black;
 }
 
 h2 {
-  color: white;
+  color: black;
 }
 
 body {
@@ -27,6 +27,13 @@ body {
 #Rotar { position:relative; top:-400px; left:430px; }
 #Teclat { position:relative; top:-360px; left:293px; }
 #Audios { position:relative; top:-480px; left:0px; }
-#Imatges { position:relative; top:-350px; left:300px; }
-#Moix { position:relative; top:-250px; left:220px; }
-#es { position:relative; top:-400px; left:400px; }
+#Imatges { position:relative; top:-390px; left:360px; }
+#Moix { position:relative; top:-300px; left:180px; }
+#ca { position:relative; top:-447px; left:348px; }
+#es { position:relative; top:-447px; left:350px; }
+#en { position:relative; top:-447px; left:352px; }
+#dic_ca { position:relative; top:-474px; left:490px; }
+#dic_es { position:relative; top:-474px; left:492px; }
+#dic_en { position:relative; top:-474px; left:494px; }
+#lang { position:relative; top:-498px; left:440px; }
+#Teclat { position:relative; top:-485px; left:540px; }
