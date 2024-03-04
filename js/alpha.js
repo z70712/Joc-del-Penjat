@@ -45,6 +45,8 @@
                     correcte = correcte + 1;
                         if (correcte == 7){
                             alert("Has encertat 7 lletres!");
+                            document.body.style.backgroundImage = "url('img/Party.png')";
+                            document.getElementById("cheer").play();
                             Final();
                         }
                         if (bones == ""){
@@ -53,6 +55,11 @@
                         else {
                             bones = bones + ", " + lletra;
                         }
+                    document.getElementById("disfraz2").hidden = false;
+                    document.getElementById("disfraz1").hidden = true;
+                    document.getElementById("disfraz3").hidden = true; 
+                    document.getElementById("miau").play();
+                    document.getElementById("clock_ticking").play();
                     document.getElementById("bones").innerHTML =  bones;
                 }
            //Comprovam si la lletra introduida es troba entre la a i la m incloent la ç , sumam la lletra a bones i comporvam si s'han encertat 7 lletres      
@@ -62,8 +69,10 @@
                     alert("Has fallat!");
                     vides = vides -1;
                     MostraImg();
-                        if (vides == 0){
+                        if (vides <= 0){
                             alert("Has fallat tots els intents!");
+                            document.body.style.backgroundImage = "url('img/Jungle.png')";
+                            document.getElementById("cat-fight").play();
                             Final();
                         }
                         if (vides <= 3){
@@ -77,11 +86,17 @@
                         else {
                             dolentes = dolentes + ", " + lletra;
                         }
+                        document.getElementById("disfraz1").hidden = false;                            
+                        document.getElementById("disfraz2").hidden = true;
+                        document.getElementById("disfraz3").hidden = true;
+                        document.getElementById("boom_cloud").play();
+                        document.getElementById("clock_ticking").play();
                         document.getElementById("dolentes").innerHTML =  dolentes; 
                 }
            //Comprovam si la lletra introduida es troba entre la n i la z incloent la ñ  
                 
                 else if (lletra !== ""){
+                    document.getElementById("clock_ticking").play();
                     alert("Caràcter incorrecte!");
                 }
            //Si no s'ha complir cap condició de les anteriors, concluim que el valor introduit es un caracter incorrecte  
@@ -95,6 +110,8 @@
            //Afegim la possibilitat d'executar accions amb la tecla intro
             
             function Final() {
+                window.alert("En pau descansi – RIP!");
+                document.getElementById("bell_toll_x3").play();
                 document.getElementById("valor").disabled = true;
                 document.getElementById("boto").disabled = true;
             }
@@ -107,9 +124,12 @@
                 document.getElementById("ahorcado_4").hidden = true;
                 document.getElementById("ahorcado_5").hidden = true;
                 document.getElementById("ahorcado_6").hidden = true;
+                document.getElementById("disfraz1").hidden = true;
+                document.getElementById("disfraz2").hidden = true;
+                document.getElementById("disfraz3").hidden = false;
                 document.getElementById('inici').play();
+                document.getElementById("Audios").hidden = true;
                 alert("Anam a la quinta forca?");
-                document.getElementById("Audios").hidden = true;                
             }
            //Definim la funció que es mostra quan s'obri el joc
             function MostraImg() {
@@ -145,9 +165,9 @@
             }
             
             //Temporitzador
-            var seconds = 0;
+            var segons = 0;
 		function timer(){
-                    seconds = seconds + 1;
-                    document.getElementById("counter").innerHTML = seconds;
+                    segons = segons + 1;
+                    document.getElementById("counter").innerHTML = segons;
 		}
 		setInterval(timer, 1000);
