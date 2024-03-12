@@ -9,8 +9,13 @@
             var pistes = ["A la quinta forca", "A ca un penjat, no hi anomenis cordes", "Setze jutges d'un jutjat mengen fetge d'un penjat"];
             var paraulespistes = [1, 2, 0, 2, 2, 2, 1, 0, 2];
             
-            //Marcam cada lletra amb un "_"
-            for (var i=0; i < paraula.length; i++){
+            //Escull una paraula aleatòriament
+            var aleatori = Math.floor(Math.random()* paraules.length);
+            var paraula = paraules[aleatori];
+            var pista = pistes[paraulespistes[aleatori]];
+            
+            //marcam cada lletra amb "_"
+            for (var i=0; i<paraula.lenght; i++){
                 Paraula[i] = "_";
             }
             
@@ -90,12 +95,8 @@
                         }
                         document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;
                         
-                        if (Lletres == ""){
-                            Lletres = Lletres + lletra;
-                        }
-                        else {
-                            Lletres = Lletres + ", " + lletra;
-                        }
+                        Lletres[7-vides-1] = lletra;
+                    
                         document.getElementById("disfraz1").hidden = false;                            
                         document.getElementById("disfraz2").hidden = true;
                         document.getElementById("disfraz3").hidden = true;
