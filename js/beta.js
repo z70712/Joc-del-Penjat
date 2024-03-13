@@ -2,6 +2,7 @@
             var correcte = 0;
             var Encerts = []; //bones
             var Errades = ["_","_","_","_","_","_","_"]; //dolentes
+            var segons = 0;
             //Establim variables
             
             //Llista de paraules per al joc i les pistes associades
@@ -13,6 +14,11 @@
             var aleatori = Math.floor(Math.random()* paraules.length);
             var paraula = paraules[aleatori];
             var pista = pistes[paraulespistes[aleatori]];
+            
+            // Marcam cada lletra amb un "_"
+            for (var i = 0; i < paraula.length; i++) {
+                Encerts[i] = "_";
+            }
             
             function Comprovar() {
                 if (document.getElementById("valor").value == ""){
@@ -49,29 +55,43 @@
            //Establim el canvi de accents i dieresis a la lletra corresponent    
             }
                 var pos = paraula.indexOf(lletra);
-                if ((pos != -1)&&(lletra != "")){
+                if ((pos != -1) && (lletra != "")){
                     alert(paraula);
                     document.getElementById("disfraz1").hidden = true;
                     document.getElementById("disfraz2").hidden = false;
                     document.getElementById("disfraz3").hidden = true; 
                     document.getElementById("miau").play();
                     alert("Has encertat!");
-                    //marcam cada lletra amb "_"
-                    for (var i=0; i<paraula.lenght; i++){
+                    for (var i = pos; i < paraula.length; i++){
                         if (paraula[i] == lletra){
-                        Encerts[i] = "_";
+                        Encerts[i] = lletra;
                     }
                 }
-                document.getElementById("Paraula").innerHTML =  Encerts;
+                document.getElementById("Paraula").innerHTML = Encerts;
             }   else if (((lletra >= "a") && (lletra <= "z")) ||
-                    (lletra >= "ñ") || (lletra <= "-") ||
-                    (lletra >= "ç") || (lletra <= "·")) {
+                    (lletra == "ñ") || (lletra == "-") ||
+                    (lletra == "ç") || (lletra == "·")) {
                         document.getElementById("disfraz1").hidden = false;                            
                         document.getElementById("disfraz2").hidden = true;
                         document.getElementById("disfraz3").hidden = true;
                         document.getElementById("boom_cloud").play();
                         document.getElementById("clock_ticking").play();
                         alert("Has fallat!");
+                        vides = vides -1;
+                        Errades[7-vides-1] = lletra;
+                        document.getElementById("Lletres").innerHTML =  Errades; 
+                        MostraImg();
+                        if (vides <= 0){
+                            alert("Has fallat tots els intents!");
+                            document.body.style.backgroundImage = "url('img/Jungle.png')";
+                            document.getElementById("cat-fight").play();
+                            Final();
+                        }
+                        if (vides <= 3){
+                            document.getElementById("vida").style.color = "red";
+                        }
+                        document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides; 
+                        
             }
                 /*
                 if (((lletra >= "a") && (lletra <= "m")) || (lletra == "ç" ))
@@ -162,6 +182,7 @@
                 document.getElementById("disfraz3").hidden = false;
                 document.getElementById('inici').play();
                 document.getElementById("Audios").hidden = true;
+                document.getElementById("Lletres").innerHTML =  Errades;
                 alert("Anam a la quinta forca?");
             }
            //Definim la funció que es mostra quan s'obri el joc
@@ -198,9 +219,8 @@
             }
             
             //Temporitzador
-            var segons = 0;
 		function timer(){
                     segons = segons + 1;
-                    document.getElementById("counter").innerHTML = segons;
+                    document.getElementById("counter").innerHTML = "Temps: " + segons + "s";
 		}
 		setInterval(timer, 1000);
