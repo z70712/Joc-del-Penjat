@@ -1,7 +1,7 @@
             var vides = 7;
             var correcte = 0;
-            var Paraula = []; //bones
-            var Lletres = ["_","_","_","_","_","_","_"]; //dolentes
+            var Encerts = []; //bones
+            var Errades = ["_","_","_","_","_","_","_"]; //dolentes
             //Establim variables
             
             //Llista de paraules per al joc i les pistes associades
@@ -13,11 +13,6 @@
             var aleatori = Math.floor(Math.random()* paraules.length);
             var paraula = paraules[aleatori];
             var pista = pistes[paraulespistes[aleatori]];
-            
-            //marcam cada lletra amb "_"
-            for (var i=0; i<paraula.lenght; i++){
-                Paraula[i] = "_";
-            }
             
             function Comprovar() {
                 if (document.getElementById("valor").value == ""){
@@ -53,7 +48,32 @@
                     break;
            //Establim el canvi de accents i dieresis a la lletra corresponent    
             }
-                
+                var pos = paraula.indexOf(lletra);
+                if ((pos != -1)&&(lletra != "")){
+                    alert(paraula);
+                    document.getElementById("disfraz1").hidden = true;
+                    document.getElementById("disfraz2").hidden = false;
+                    document.getElementById("disfraz3").hidden = true; 
+                    document.getElementById("miau").play();
+                    alert("Has encertat!");
+                    //marcam cada lletra amb "_"
+                    for (var i=0; i<paraula.lenght; i++){
+                        if (paraula[i] == lletra){
+                        Encerts[i] = "_";
+                    }
+                }
+                document.getElementById("Paraula").innerHTML =  Encerts;
+            }   else if (((lletra >= "a") && (lletra <= "z")) ||
+                    (lletra >= "ñ") || (lletra <= "-") ||
+                    (lletra >= "ç") || (lletra <= "·")) {
+                        document.getElementById("disfraz1").hidden = false;                            
+                        document.getElementById("disfraz2").hidden = true;
+                        document.getElementById("disfraz3").hidden = true;
+                        document.getElementById("boom_cloud").play();
+                        document.getElementById("clock_ticking").play();
+                        alert("Has fallat!");
+            }
+                /*
                 if (((lletra >= "a") && (lletra <= "m")) || (lletra == "ç" ))
                 {
                     alert("Has encertat!");
@@ -64,18 +84,18 @@
                             document.getElementById("cheer").play();
                             Final();
                         }
-                        if (Paraula == ""){
-                            Paraula = Paraula + lletra;
+                        if (Encerts == ""){
+                            Encerts = Encerts + lletra;
                         }
                         else {
-                            Paraula = Paraula + ", " + lletra;
+                            Encerts = Encerts + ", " + lletra;
                         }
                     document.getElementById("disfraz2").hidden = false;
                     document.getElementById("disfraz1").hidden = true;
                     document.getElementById("disfraz3").hidden = true; 
                     document.getElementById("miau").play();
                     document.getElementById("clock_ticking").play();
-                    document.getElementById("Paraula").innerHTML =  Paraula;
+                    document.getElementById("Paraula").innerHTML =  Encerts;
                 }
            //Comprovam si la lletra introduida es troba entre la a i la m incloent la ç , sumam la lletra a bones i comporvam si s'han encertat 7 lletres      
                 
@@ -95,15 +115,17 @@
                         }
                         document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;
                         
-                        Lletres[7-vides-1] = lletra;
+                        Errades[7-vides-1] = lletra;
                     
                         document.getElementById("disfraz1").hidden = false;                            
                         document.getElementById("disfraz2").hidden = true;
                         document.getElementById("disfraz3").hidden = true;
                         document.getElementById("boom_cloud").play();
                         document.getElementById("clock_ticking").play();
-                        document.getElementById("Lletres").innerHTML =  Lletres; 
+                        document.getElementById("Lletres").innerHTML =  Errades; 
                 }
+             
+                 */
            //Comprovam si la lletra introduida es troba entre la n i la z incloent la ñ  
                 
                 else if (lletra !== ""){
