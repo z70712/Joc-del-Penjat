@@ -3,6 +3,7 @@
             var Encerts = []; //bones
             var Errades = ["_","_","_","_","_","_","_"]; //dolentes
             var segons = 0;
+            var minuts = 0;
             //Establim variables
             
             //Llista de paraules per al joc i les pistes associades
@@ -16,7 +17,7 @@
             var pista = pistes[paraulespistes[aleatori]];
             
             // Marcam cada lletra amb un "_"
-            for (var i = 0; i < paraula.length; i++) {
+            for (var i = 0; i < paraula.length; i++){
                 Encerts[i] = "_";
             }
             
@@ -148,7 +149,7 @@
                  */
            //Comprovam si la lletra introduida es troba entre la n i la z incloent la ñ  
                 
-                else if (lletra !== ""){
+                else{
                     document.getElementById("clock_ticking").play();
                     alert("Caràcter incorrecte!");
                 }
@@ -221,6 +222,10 @@
             //Temporitzador
 		function timer(){
                     segons = segons + 1;
-                    document.getElementById("counter").innerHTML = "Temps: " + segons + "s";
+                    if (segons >= 10){
+                        minuts = minuts + 1;
+                        segons = 0;
+                    }
+                    document.getElementById("counter").innerHTML = "Temps: " + minuts + " min " + segons + " s";
 		}
 		setInterval(timer, 1000);
