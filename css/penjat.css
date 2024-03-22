@@ -14,6 +14,12 @@ h1 {
   color: white;
 }
 
+.pista {
+  position:relative; 
+  top:-500px; 
+  left:318px; }
+
+
 body {
     background:linear-gradient(#aaa 0, #ddd 10px, #fff 55px);
     border:1px solid black;
