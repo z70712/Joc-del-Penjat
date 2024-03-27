@@ -14,10 +14,15 @@ h1 {
   color: white;
 }
 
-.pista {
+#pista {
   position:relative; 
-  top:-500px; 
-  left:318px; }
+  top:-40px; 
+  left:100px; }
+
+#counter {
+  position:relative; 
+  top:-36px; 
+  left:100px; }
 
 
 body {
