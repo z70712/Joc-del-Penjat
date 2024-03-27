@@ -88,71 +88,25 @@
                             document.getElementById("cat-fight").play();
                             Final();
                         }
+                        
                         if (vides <= 3){
                             document.getElementById("vida").style.color = "red";
                         }
                         document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides; 
                         
             }
-                /*
-                if (((lletra >= "a") && (lletra <= "m")) || (lletra == "ç" ))
-                {
-                    alert("Has encertat!");
-                    correcte = correcte + 1;
-                        if (correcte == 7){
-                            alert("Has encertat 7 lletres!");
-                            document.body.style.backgroundImage = "url('img/Party.png')";
-                            document.getElementById("cheer").play();
-                            Final();
-                        }
-                        if (Encerts == ""){
-                            Encerts = Encerts + lletra;
-                        }
-                        else {
-                            Encerts = Encerts + ", " + lletra;
-                        }
-                    document.getElementById("disfraz2").hidden = false;
-                    document.getElementById("disfraz1").hidden = true;
-                    document.getElementById("disfraz3").hidden = true; 
-                    document.getElementById("miau").play();
-                    document.getElementById("clock_ticking").play();
-                    document.getElementById("Paraula").innerHTML =  Encerts;
-                }
-           //Comprovam si la lletra introduida es troba entre la a i la m incloent la ç , sumam la lletra a bones i comporvam si s'han encertat 7 lletres      
-                
-                else if (((lletra >= "n") && (lletra <= "z")) || (lletra == "ñ" ))
-                {
-                    alert("Has fallat!");
-                    vides = vides -1;
-                    MostraImg();
-                        if (vides <= 0){
-                            alert("Has fallat tots els intents!");
-                            document.body.style.backgroundImage = "url('img/Jungle.png')";
-                            document.getElementById("cat-fight").play();
-                            Final();
-                        }
-                        if (vides <= 3){
-                            document.getElementById("vida").style.color = "red";
-                        }
-                        document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;
-                        
-                        Errades[7-vides-1] = lletra;
-                    
-                        document.getElementById("disfraz1").hidden = false;                            
-                        document.getElementById("disfraz2").hidden = true;
-                        document.getElementById("disfraz3").hidden = true;
-                        document.getElementById("boom_cloud").play();
-                        document.getElementById("clock_ticking").play();
-                        document.getElementById("Lletres").innerHTML =  Errades; 
-                }
-             
-                 */
-           //Comprovam si la lletra introduida es troba entre la n i la z incloent la ñ  
                 
                 else{
                     document.getElementById("clock_ticking").play();
                     alert("Caràcter incorrecte!");
                 }
+               if(Encerts.indexOf("_") == -1){
+                    alert("Has encertat 7 lletres!");
+                    document.body.style.backgroundImage = "url('img/Party.png')";
+                    document.getElementById("cheer").play();
+                    Final()
+                }
+                       
            //Si no s'ha complir cap condició de les anteriors, concluim que el valor introduit es un caracter incorrecte  
             }
             
