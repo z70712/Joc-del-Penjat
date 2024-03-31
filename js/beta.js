@@ -86,6 +86,8 @@
                             alert("Has fallat tots els intents!");
                             document.body.style.backgroundImage = "url('img/Jungle.png')";
                             document.getElementById("cat-fight").play();
+                            window.alert("En pau descansi – RIP!");
+                            document.getElementById("bell_toll_x3").play();
                             Final();
                         }
                         
@@ -118,8 +120,6 @@
            //Afegim la possibilitat d'executar accions amb la tecla intro
             
             function Final() {
-                window.alert("En pau descansi – RIP!");
-                document.getElementById("bell_toll_x3").play();
                 document.getElementById("valor").disabled = true;
                 document.getElementById("boto").disabled = true;
             }
