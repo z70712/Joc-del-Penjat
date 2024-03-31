@@ -14,17 +14,6 @@ h1 {
   color: white;
 }
 
-#pista {
-  position:relative; 
-  top:-40px; 
-  left:100px; }
-
-#counter {
-  position:relative; 
-  top:-36px; 
-  left:100px; }
-
-
 body {
     background:linear-gradient(#aaa 0, #ddd 10px, #fff 55px);
     border:1px solid black;
@@ -47,12 +36,17 @@ body {
 #Teclat { position:relative; top:-360px; left:293px; }
 #Audios { position:relative; top:-480px; left:0px; }
 #Imatges { position:absolute; top:120px; left:320px; }
-#Moix { position:absolute; top:200px; left:200px; }
-#ca { position:relative; top:-447px; left:348px; }
-#es { position:relative; top:-447px; left:350px; }
-#en { position:relative; top:-447px; left:352px; }
-#dic_ca { position:relative; top:-474px; left:490px; }
-#dic_es { position:relative; top:-474px; left:492px; }
-#dic_en { position:relative; top:-474px; left:494px; }
-#IdiomaExtra { position:relative; top:-498px; left:440px; }
-#Teclat { position:absolute; top:75px; left:560px; }
+#Moix { position:absolute; top:275px; left:250px; }
+#ca { position:relative; top:-490px; left:348px; }
+#es { position:relative; top:-490px; left:350px; }
+#en { position:relative; top:-490px; left:352px; }
+#dic_ca { position:relative; top:-518px; left:490px; }
+#dic_es { position:relative; top:-518px; left:492px; }
+#dic_en { position:relative; top:-518px; left:494px; }
+#IdiomaExtra { position:relative; top:-544px; left:440px; }
+#Teclat { position:absolute; top:80px; left:560px; }
+#pista { position:relative; top:-280px; left:110px; }
+#counter { position:relative; top:-230px; left:90px; }
+#Sopes { position:absolute; top:138px; left:126px; }
+#Set { position:absolute; top:224px; left:98px; }
+#Ets { position:absolute; top:306px; left:126px; }
