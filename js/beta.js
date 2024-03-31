@@ -1,3 +1,77 @@
+            const Idiomes = [
+                {
+                    "IdIdioma": "ca",
+                    "Titol": "Versió amb Estructures de Dades Joc del Penjat",
+                    "Versio": "Versió β Joc del Penjat",
+                    "Input": "Escriu una lletra minúscula",
+                    "Pregunta": "Anam a la quinta forca?",
+                    "Comprovar": "Comprovar",
+                    "Paraula": "Paraula:",
+                    "Sopes": "Demanes sopes?",
+                    "Pista": "Pista",
+                    "Vides": "Vides:",
+                    "Moix": "Un moix en té set?",
+                    "Lletres": "Lletres:",
+                    "Ets": "Ets de lletres?",
+                    "URLpistes": "URLpistes:",
+                    "Dita": "Dita",
+                    "Dita1": "A la quinta forca, ",
+                    "Dita2": "A ca un penjat, no hi anomenis cordes, ",
+                    "Dita3": "Setze jutges d'un jutjat mengen fetge d'un penjat, …",
+                    "Credits": "Crèdits:",
+                    "YouTube": "Joc Penjat on Scratch",
+                    "Wikis": "Penjat",
+                    "Idioma": "en Català",
+                    "Diccionari": "Diccionari",
+                    "Teclat": "Mostra o Amaga",
+                    "Incorrecte": "Caràcter incorrecte!",
+                    "Repetida": "Lletra repetida!",
+                    "Encertat": "Has encertat!",
+                    "Guanyat": "i has guanyat!",
+                    "Fallat": "Has fallat!",
+                    "Perdut": "i has perdut!",
+                    "Descansi": "En pau descansi – RIP!",
+                    "Puntuacio": "Puntuació:"
+                },
+                {
+                    "IdIdioma": "es",
+                    "Titol": "Versión con Estructuras de Datos Juego del Ahorcado",
+                    "Versio": "Versión β Juego del Ahorcado",
+                    "Input": "Escribe una letra minúscula",
+                    "Pregunta": "Vamos al quinto pino?",
+                    "Comprovar": "Comprobar",
+                    "Paraula": "Palabra:",
+                    "Sopes": "Te rindes?",
+                    "Pista": "Pista",
+                    "Vides": "Vidas:",
+                    "Moix": "Un gato tiene siete?",
+                    "Lletres": "Letras:",
+                    "Ets": "Eres de letras?",
+                    "URLpistes": "URLpistas:",
+                    "Dita": "Dicho",
+                    "Dita1": "Al quinto pino, ",
+                    "Dita2": "En casa de un ahorcado, no hables de cuerdas,",
+                    "Dita3": "Dieciséis jueces de un juzgado comen hígado de un ahorcado, …",
+                    "Credits": "Crèditos:",
+                    "YouTube": "Juego Ahorcado on Scratch",
+                    "Wikis": "Ahorcado",
+                    "Idioma": "en Español",
+                    "Diccionari": "Diccionario",
+                    "Teclat": "Muestra o Esconde",
+                    "Incorrecte": "Carácter incorrecto!",
+                    "Repetida": "Letra repetida!",
+                    "Encertat": "Has acertado!",
+                    "Guanyat": "y has ganado!",
+                    "Fallat": "Has fallado!",
+                    "Perdut": "y has perdido!",
+                    "Descansi": "En paz descanse - RIP!",
+                    "Puntuacio": "Puntuación:"
+                }
+            ] 
+            
+            var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == "ca");
+            //Prova dels idiomes, no implementat encara
+            
             var vides = 7;
             var correcte = 0;
             var Encerts = []; //bones
@@ -57,7 +131,7 @@
             }
                 var pos = paraula.indexOf(lletra);
                 if ((pos != -1) && (lletra != "")){
-                    alert(paraula);
+                    //alert(paraula);
                     document.getElementById("disfraz1").hidden = true;
                     document.getElementById("disfraz2").hidden = false;
                     document.getElementById("disfraz3").hidden = true; 
@@ -104,9 +178,10 @@
                 }
                if(Encerts.indexOf("_") == -1){
                     alert("Has encertat 7 lletres!");
+                    AmagaImg();
                     document.body.style.backgroundImage = "url('img/Party.png')";
                     document.getElementById("cheer").play();
-                    Final()
+                    Final();
                 }
                        
            //Si no s'ha complir cap condició de les anteriors, concluim que el valor introduit es un caracter incorrecte  
@@ -135,6 +210,7 @@
                 document.getElementById("disfraz1").hidden = true;
                 document.getElementById("disfraz2").hidden = true;
                 document.getElementById("disfraz3").hidden = false;
+                document.getElementById("algoritme").hidden = true;
                 document.getElementById('inici').play();
                 document.getElementById("Audios").hidden = true;
                 document.getElementById("Lletres").innerHTML =  Errades;
@@ -171,6 +247,20 @@
                         document.getElementById("ahorcado_1").hidden = true;
                         break;
                 }
+            }
+            
+            function AmagaImg() {
+                        document.getElementById("ahorcado_6").hidden = true;
+                        document.getElementById("ahorcado_5").hidden = true;
+                        document.getElementById("ahorcado_4").hidden = true;
+                        document.getElementById("ahorcado_3").hidden = true;
+                        document.getElementById("ahorcado_2").hidden = true;
+                        document.getElementById("ahorcado_1").hidden = true;
+                        document.getElementById("ahorcado_0").hidden = true;
+                        document.getElementById("disfraz1").hidden = true;                            
+                        document.getElementById("disfraz2").hidden = true;
+                        document.getElementById("disfraz3").hidden = true;
+                        document.getElementById("algoritme").hidden = false;
             }
             
             //Temporitzador
