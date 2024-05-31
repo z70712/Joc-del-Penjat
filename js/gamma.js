@@ -104,35 +104,32 @@
         }
     ]
     var Idiomes = Idiomes_dft;
-  
-// Simulam una Taula de ParaulesPistes, similar a la consulta a la base de dades, amb un array d'objectes
-    const Taula_dft = [
-        // Deixam per defecte les paraules i pistes en Català
-        {"Paraula": "cordes", "Pista": "A ca un penjat, no hi anomenis cordes"},
-        {"Paraula": "fetge", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
-        {"Paraula": "forca", "Pista": "A la quinta forca"},
-        {"Paraula": "jutges", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
-        {"Paraula": "jutjat", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
-        {"Paraula": "mengen", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
-        {"Paraula": "penjat", "Pista": "A ca un penjat, no hi anomenis cordes"},
-        {"Paraula": "quinta", "Pista": "A la quinta forca"},
-        {"Paraula": "setze", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"}
-    ];
-    var Taula = Taula_dft; 
-            const Vides_dft = 7; s
-            var Idiomes = Idiomes_dft;
-            var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma === "ca");
-            
-            
+    var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma === "ca");
+     
+            const Vides_dft = 7;
             var Vides = Vides_dft;
             var IdIdioma_ant = "ca";
-            var vides = 7;
             var correcte = 0;
             var Encerts = []; //bones, Paraula
             var Errades = ["_","_","_","_","_","_","_"]; //dolentes, Lletres
             var segons = 0;
             var minuts = 0;
             //Establim variables
+            
+            //Simulam una Taula de ParaulesPistes, similar a la consulta a la base de dades, amb un array d'objectes
+            const Taula_dft = [
+                // Deixam per defecte les paraules i pistes en Català
+                {"Paraula": "cordes", "Pista": "A ca un penjat, no hi anomenis cordes"},
+                {"Paraula": "fetge", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
+                {"Paraula": "forca", "Pista": "A la quinta forca"},
+                {"Paraula": "jutges", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
+                {"Paraula": "jutjat", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
+                {"Paraula": "mengen", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
+                {"Paraula": "penjat", "Pista": "A ca un penjat, no hi anomenis cordes"},
+                {"Paraula": "quinta", "Pista": "A la quinta forca"},
+                {"Paraula": "setze", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"}
+                ];
+            var Taula = Taula_dft; 
             
             //Llista de paraules per al joc i les pistes associades
             var paraules = ["cordes","fetge", "forca", "jutges", "jutjat", "mengen", "penjat", "quinta", "setze"];
@@ -141,60 +138,21 @@
             
             
             //Escull una paraula aleatòriament
-            var aleatori = Math.floor(Math.random()* paraules.length);
+            var aleatori = Math.floor(Math.random() * paraules.length);
             var paraula = paraules[aleatori];
             var pista = pistes[paraulespistes[aleatori]];
             
-            
             // Alternativament, fent servir l'array d'objectes
             window.alert(Taula.length);
-            aleatori = Math.floor(Math.random()* Taula.length);
+            aleatori = Math.floor(Math.random() * Taula.length);
             paraula = Taula[aleatori].Paraula;
             pista = Taula[aleatori].Pista;
-            window.alert("aleatori=" + aleatori + ", paraula=" + paraula + ", pista=" + pista);
+            window.alert("aleatori="  + aleatori + ", paraula=" + paraula + ", pista=" + pista);
             
             //Carregar base dades penjat.db
-            function AlaWeb_SQLite(IdIdioma){
-                    config = {
-                    locateFile: filename => `/dist/${filename}`
-                    };
-                    //Recuperam de lam base de dades els textosgui èr tots els idiomes
-                    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
-                        SELECT * FROM TblTextosGUI;',
-                        [], function(idiomes) {SQL_TblTextosGUI(IdIdioma, idiomes.pop());}
-                        //[], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
-                    );
-                    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
-                            SELECT Paraula, Pista \n\
-                            FROM TblParaules INNER JOIN TblPistes \n\
-                            ON TblParaules.IdPista = TblPistes.IdPista \n\
-                            WHERE TblParaules.IdIdioma = "' + IdIdioma + '";',
-                        //[], function(taula) {Print_Data(Taula = taula.pop());}
-                        [], function(taula) {SQL_TblParaulesPistes(IdIdioma, taula.pop());}
-                    );
-                }
+            
                 
-            function SQL_TblTextosGUI(IdIdioma, TblTextosGUI) {     
-                Idiomes = TblTextosGUI;
-                if (Idiomes.length === 0) {Idiomes = Idiomes_dft;};
-                    if (Idiomes.find(Idioma => Idioma.IdIdioma === IdIdioma) === undefined){
-                    window.alert("GUI: Idioma no trobat/ Idioma no encontrado/ Language not found!");
-                    Idiomes = Idiomes_dft;
-                };
-            }
-            function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {           
-                window.alert("SQL_TblParaulesPistes IdIdioma = '" + IdIdioma + "'");
-                Taula = TblParaulesPistes;
-                if (Taula.length === 0) {
-                    window.alert("Idioma sense paraules/ Idioma sin palabras/ Language without words!");
-                    Taula = Taula_dft;
-                    IdIdioma = "ca";
-                    IdIdioma_ant = IdIdioma;
-                } else {
-                     window.alert("Idioma sense paraules / Idioma sin palabras / Language words = '" + IdIdioma + "'");
-                };
-                window.alert(Taula[0].Pista);
-            }
+            
             
             //Canviam els diferents literals de la GUI durant l'idioma
             function CanviarIdioma(IdIdioma){
@@ -221,13 +179,20 @@
                 //document.getElementById("Dita2").title = Idioma.Dita2;
                 //document.getElementById("Dita_2").innerHTML = Idioma.Dita + " 2";
                 //document.getElementById("Dita3").title = Idioma.Dita3;
+                alert("hola");
                 //document.getElementById("Dita_3").innerHTML = Idioma.Dita + " 3";
                 document.getElementById("Credits").innerHTML = Idioma.Credits;
                 //document.getElementById("Scratch").innerHTML = Idioma.YouTube;
-                document.getElementById("YouTube").innerHTML = Idioma.YouTube;
+                //document.getElementById("YouTube").innerHTML = Idioma.YouTube;
                 //document.getElementById("Teclat").title = Idioma.Teclat;
-                
+                alert("hola2");
+                window.alert("Nova paraula aleatòria / Nueva palabra aleatoria / New random word!");
+                aleatori = Math.floor(Math.random() * Taula.length);
+                paraula = Taula[aleatori].Paraula;
+                pista = Taula[aleatori].Pista;
+        
                 Paraula = [];
+                window.alert("[" + paraula + "]=[" + pista + "]");
                 //Marcam cada lletra amb un "_"
                 for (var i = 0; i < paraula.length; i++) {
                     Paraula[i] = "_";
@@ -255,24 +220,6 @@
                         document.getElemenyById("gb").src = "img/" + IdIdioma + ".png";
                     }
                 }
-            
-    // Print data  
-    function Print_Data(res) {
-        for (var i in res)
-        {
-           // console.log("row " + i);
-           // document.getElementById("res").innerHTML += "<br>";
-           for (var j in res[i])
-             {
-              // console.log(" " + res[i][j]);
-              // document.getElementById("res").innerHTML += res[i][j] + ", ";
-              window.alert("res[" + i + "][" +j + "] = " + res[i][j]);
-             }
-        }
-    } 
-
-          
-            
             
             // Marcam cada lletra amb un "_"
             for (var i = 0; i < paraula.length; i++){
@@ -456,4 +403,64 @@
                     }
                     document.getElementById("counter").innerHTML = "Temps: " + minuts + " min " + segons + " s";
 		}
-		setInterval(timer, 1000);              
+		setInterval(timer, 1000);         
+            
+    
+                function AlaWeb_SQLite(IdIdioma) {
+                    config = {
+                    locateFile: filename => `/dist/${filename}`
+                    };
+                    //Recuperam de lam base de dades els textosgui èr tots els idiomes
+                    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
+                            SELECT * FROM TblTextosGUI;',
+                        [], function(idiomes) {SQL_TblTextosGUI(IdIdioma, idiomes.pop());}
+                        //[], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
+                    );
+                    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
+                            SELECT Paraula, Pista \n\
+                            FROM TblParaules INNER JOIN TblPistes \n\
+                            ON TblParaules.IdPista = TblPistes.IdPista \n\
+                            WHERE TblParaules.IdIdioma = "' + IdIdioma + '";',
+                        //[], function(taula) {Print_Data(Taula = taula.pop());}
+                        [], function(taula) {SQL_TblParaulesPistes(IdIdioma, taula.pop());}
+                    );
+                }
+            
+            function SQL_TblTextosGUI(IdIdioma, TblTextosGUI) {    
+                Idiomes = TblTextosGUI;
+                if (Idiomes.length === 0) {Idiomes = Idiomes_dft;};
+                    if (Idiomes.find(Idioma => Idioma.IdIdioma === IdIdioma) === undefined){
+                    window.alert("GUI: Idioma no trobat/ Idioma no encontrado/ Language not found!");
+                    Idiomes = Idiomes_dft;
+                };
+            }
+            function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {         
+                window.alert("SQL_TblParaulesPistes IdIdioma = '" + IdIdioma + "'");
+                Taula = TblParaulesPistes;
+                if (Taula.length === 0) {
+                    window.alert("Idioma sense paraules/ Idioma sin palabras/ Language without words!");
+                    Taula = Taula_dft;
+                    IdIdioma = "ca";
+                    IdIdioma_ant = IdIdioma;
+                } else {
+                     window.alert("Idioma sense paraules / Idioma sin palabras / Language words = '" + IdIdioma + "'");
+                };
+                window.alert(Taula[0].Pista);
+            }
+            
+
+
+            // Print data  
+                function Print_Data(res) {        
+                    for (var i in res)
+                    {
+                    // console.log("row " + i);
+                    // document.getElementById("res").innerHTML += "<br>";
+                        for (var j in res[i])
+                        {
+                        // console.log(" " + res[i][j]);
+                        // document.getElementById("res").innerHTML += res[i][j] + ", ";
+                        window.alert("res[" + i + "][" +j + "] = " + res[i][j]);
+                        }
+                    }
+                }       
