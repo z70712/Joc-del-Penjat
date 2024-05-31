@@ -143,11 +143,11 @@
             var pista = pistes[paraulespistes[aleatori]];
             
             // Alternativament, fent servir l'array d'objectes
-            window.alert(Taula.length);
+            //window.alert(Taula.length);
             aleatori = Math.floor(Math.random() * Taula.length);
             paraula = Taula[aleatori].Paraula;
             pista = Taula[aleatori].Pista;
-            window.alert("aleatori="  + aleatori + ", paraula=" + paraula + ", pista=" + pista);
+            //window.alert("aleatori="  + aleatori + ", paraula=" + paraula + ", pista=" + pista);
             
             //Carregar base dades penjat.db
             
@@ -161,7 +161,7 @@
                 }
                 AlaWeb_SQLite(IdIdioma);
                 Idioma = Idiomes.find(Idioma => Idioma.IdIdioma === IdIdioma);
-                alert(Idioma.Titol);
+                //alert(Idioma.Titol);
                 document.title = Idioma.Titol;
                 document.getElementById("Versio").innerHTML = Idioma.Versio;
                 document.getElementById("valor").placeholder = Idioma.Input;
@@ -179,13 +179,11 @@
                 //document.getElementById("Dita2").title = Idioma.Dita2;
                 //document.getElementById("Dita_2").innerHTML = Idioma.Dita + " 2";
                 //document.getElementById("Dita3").title = Idioma.Dita3;
-                alert("hola");
                 //document.getElementById("Dita_3").innerHTML = Idioma.Dita + " 3";
                 document.getElementById("Credits").innerHTML = Idioma.Credits;
                 //document.getElementById("Scratch").innerHTML = Idioma.YouTube;
                 //document.getElementById("YouTube").innerHTML = Idioma.YouTube;
                 //document.getElementById("Teclat").title = Idioma.Teclat;
-                alert("hola2");
                 window.alert("Nova paraula aleatòria / Nueva palabra aleatoria / New random word!");
                 aleatori = Math.floor(Math.random() * Taula.length);
                 paraula = Taula[aleatori].Paraula;
@@ -345,7 +343,7 @@
                 document.getElementById('inici').play();
                 document.getElementById("Audios").hidden = true;
                 document.getElementById("Lletres").innerHTML =  Errades;
-                alert("Anam a la quinta forca?");
+                alert("Let's go: a la quinta forca / al quinto pino / to the boondocks?");
             }
            //Definim la funció que es mostra quan s'obri el joc
             function MostraImg() {
@@ -443,9 +441,9 @@
                     IdIdioma = "ca";
                     IdIdioma_ant = IdIdioma;
                 } else {
-                     window.alert("Idioma sense paraules / Idioma sin palabras / Language words = '" + IdIdioma + "'");
+                     //window.alert("Idioma sense paraules / Idioma sin palabras / Language words = '" + IdIdioma + "'");
                 };
-                window.alert(Taula[0].Pista);
+                //window.alert(Taula[0].Pista);
             }
             
 
