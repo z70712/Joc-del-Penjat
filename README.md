@@ -19,4 +19,4 @@ Per veure el codi font o jugar al joc s'han de descarregar els arxius i s'han ob
 Joc del Penjat © 2024 by David Janer is licensed under CC BY-SA 4.0. <a href="https://creativecommons.org/licenses/by-sa/4.0/">Més informació</a>
 
 <h2>👱🏼 Autor</h2>
-David Janer Llodrà, @z70712
+David Janer Llodrà, @z70712 | <a href="https://sites.google.com/iesguillemsagrera.net/joc-del-penjat/p%C3%A0gina-principal">Portfoli Joc del Penjat</a>
