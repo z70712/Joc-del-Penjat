@@ -1,4 +1,11 @@
 <h1>🕹️ Joc del Penjat</h1>
+<h2><a href="https://penjat-github.netlify.app">💠 Índex</a></h2>
+        <ul>
+            <li><a href="https://z70712.netlify.app/prototip">Versió Pre-alfa o Prototip HTML/JavaScript</a></li>
+            <li><a href="https://z70712.netlify.app/alpha">Versió α: Versió amb Imatges i Sons</a></li>
+            <li><a href="https://z70712.netlify.app/beta">Versió β: Versió amb Estructures de Dades</a></li>
+            <li><a href="https://z70712.netlify.app/gamma">Versió γ: Versió amb Base de Dades</a></li>
+        </ul>  
 <h2>📋 Descipció</h2>
 Aquest és el repositori del Joc del Penjat creat per David Janer. El Joc de Penjat és una copia del famos joc Hangman.
 
