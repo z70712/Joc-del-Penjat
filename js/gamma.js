@@ -190,7 +190,7 @@
                 pista = Taula[aleatori].Pista;
         
                 Paraula = [];
-                window.alert("[" + paraula + "]=[" + pista + "]");
+                //window.alert("[" + paraula + "]=[" + pista + "]");
                 //Marcam cada lletra amb un "_"
                 for (var i = 0; i < paraula.length; i++) {
                     Paraula[i] = "_";
@@ -272,6 +272,7 @@
                     }
                 }
                 document.getElementById("Paraula").innerHTML = Encerts;
+                
             }   else if (((lletra >= "a") && (lletra <= "z")) ||
                     (lletra === "ñ") || (lletra === "-") ||
                     (lletra === "ç") || (lletra === "·")) {
@@ -306,8 +307,12 @@
                     alert("Caràcter incorrecte!");
                 }
                if(Encerts.indexOf("_") === -1){
-                    alert("Has encertat 7 lletres!");
+                    alert(Idioma.Guanyat);
                     AmagaImg();
+                    // Calculam i mostram la puntació
+                    Punts = paraula.length * Vides * 10 - document.getElementById("counter").innerHTML;
+                    if (Punts < 0) { Punts = 0; };
+                    document.getElementById("Punts").innerHTML = Idioma.Puntacio + " " + Punts;
                     document.body.style.backgroundImage = "url('img/Party.png')";
                     document.getElementById("cheer").play();
                     Final();
@@ -446,8 +451,6 @@
                 //window.alert(Taula[0].Pista);
             }
             
-
-
             // Print data  
                 function Print_Data(res) {        
                     for (var i in res)
