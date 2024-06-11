@@ -1,5 +1,5 @@
 <h1>🕹️ Joc del Penjat</h1>
-<h2><a href="https://penjat-github.netlify.app">💠 Índex</a></h2>
+<h2>💠 Índex</h2>
         <ul>
             <li><a href="https://z70712.netlify.app/prototip">Versió Pre-alfa o Prototip HTML/JavaScript</a></li>
             <li><a href="https://z70712.netlify.app/alpha">Versió α: Versió amb Imatges i Sons</a></li>
