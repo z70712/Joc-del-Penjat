@@ -1,1 +1,1 @@
-Joc del Penjat
+<b>Joc del Penjat<b>
