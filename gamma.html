@@ -12,10 +12,10 @@
         -->
         <script src="js/alasql.js"></script>
         <script src="js/sql.js"></script>
-        
+        <link rel="icon" href="img/penjat.ico"/> 
     </head>
     
-    <body style="background-image: url('img/Desert.png');
+    <body style="background-image: url('img/1.png');
           background-size: 640px 480px; background-repeat: no-repeat" onload="Inici();">
         <h1 id="Versio">Versió γ Joc del Penjat</h1>
         <input type="text" placeholder="Escriu una lletra minúscula" id="valor" maxlength="1">
@@ -40,21 +40,28 @@
         <table>
             <tr>
                 <td id="URLpistes" ><b>Url pistes: </b><a href="https://pccd.dites.cat/p/A_la_quinta_forca">Dita 1</a>&nbsp;<a href="https://pccd.dites.cat/p/A_ca_un_penjat%2C_no_hi_anomenis_cordes">Dita 2</a>&nbsp;<a href="https://pccd.dites.cat/p/Setze_jutges_d%27un_jutjat_mengen_fetge_d%27un_penjat">Dia 3</a></td>
-                <td id="URLpistes"><b>YouTube: </b><a href="https://www.youtube.com/watch?v=v53rEMHghJU&list=PLv1JHCp6B60w_KnMTu7jDdlDZ6Z0-WJ-j">Joc Penjat on Scratch</a></td>
+                <td id="YouTube"><b>Videotutorial: </b><a href="https://www.youtube.com/watch?v=v53rEMHghJU&list=PLv1JHCp6B60w_KnMTu7jDdlDZ6Z0-WJ-j">Joc Penjat on Scratch</a></td>
             </tr>
             <tr>
-                <td id="Credits" ><b>Crèdits: </b><a href="https://prosselloe.wordpress.com/?p=5862">Joc Penjat on Scratch</a></td>
-                <td><b>Wikis: </b><a href="https://ca.wikipedia.org/wiki/Penjat">Penjat</a>&nbsp;<a href="https://es.wikipedia.org/wiki/Ahorcado_(juego)">Ahorcado</a>&nbsp;<a href="https://en.wikipedia.org/wiki/Hangman_(game)">Hangman</a></td>
+                <td id="Credits" ><b>Crèdits: </b><a href="https://prosselloe.wordpress.com/">Blog Pere Miquel</a></td>
+                <td id="Wikis"><b>Wikis: </b><a href="https://ca.wikipedia.org/wiki/Penjat">Penjat</a>&nbsp;<a href="https://es.wikipedia.org/wiki/Ahorcado_(juego)">Ahorcado</a>&nbsp;<a href="https://en.wikipedia.org/wiki/Hangman_(game)">Hangman</a></td>
             </tr>
             <tr>
-                <td>Fet per: <b>David Janer</b></td>
+                <td id="Portfoli" ><b>Portfoli: </b><a href="https://sites.google.com/iesguillemsagrera.net/joc-del-penjat/p%C3%A0gina-principal">Joc Penjat David Janer</a></td>
+                <td id="GitHub" ><b>Github: </b><a href="https://github.com/z70712/Joc-del-Penjat">GitHub Joc Penjat</a></td>
+            </tr>
+            <tr>
+                <td>Fet per/ Hecho por/ Made by: <b>David Janer Llodrà</b></td>
             </tr>
         </table>
            <!--Cream els texts i estils de la pàgina-->
            <button id="pista" onclick="alert(pista);">Pista</button> 
            <!--<button onclick="MostrarCodi();" id="codi">  </button>-->
            <h4 style="color:black;" id="counter">0</h4>
-        
+        <div id='Punts'>
+           <h3 style="color:blue;" id="Puntuació"></h3>
+        </div>
+           
         <div id='Idiomes'> 
             <a id='ca' href="https://z70712-netlify-app.translate.goog/alpha?_x_tr_sl=auto&_x_tr_tl=ca&_x_tr_hl=ca&_x_tr_pto=wapp"><img src="img/ca.png" alt="ca"></a>
             <a id='es' href="https://z70712-netlify-app.translate.goog/alpha?_x_tr_sl=auto&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=wapp"><img src="img/es.png" alt="es"></a>
@@ -122,11 +129,31 @@
         <div id='Teclat'> 
             <img src="img/keyboard.png" id="teclat" style="width:30px; height: 30px;" title="Teclat">
         </div>
-        
-        <div id='Algoritme'> 
-        <img src="img/ahorcado.jpg" id="algoritme" style="width:280px; height: 270px;" title="Algoritme">   
+           
+        <div id='Sound'>
+             <button onclick="Sound();"><img src="img/unmuted.png" id="ButtonSound" style="width:30px; height: 30px;" title="Unmuted"></button>
         </div>
            
+        <div id='MostrarAlgoritme'>
+             <button onclick="MostrarAlgotitme();" id='BotoAlgoritme'>+</button>
+        </div>
+           
+         <div id='FonsPos'>
+             <button onclick="SumarFons();" id='FonsPos'>+</button>
+        </div>
+           
+        <div id='FonsNeg'>
+             <button onclick="RestarFons();" id='FonsNeg'>-</button>
+        </div>
+        
+        <div id='BanderaPista'> 
+            <img src="img/ca.png" id="BanderaPistaImg" title="BanderaPista">
+        </div>
+           
+        <div id='Algoritme'> 
+            <img src="img/ahorcado.jpg" id="algoritme" style="width:280px; height: 270px;" title="Algoritme">   
+        </div>
     </body>
     
 </html>
+
