@@ -110,6 +110,7 @@
             var Vides = Vides_dft;
             var IdIdioma_ant = "ca";
             var correcte = 0;
+            var Punts = 0;
             var Encerts = []; //bones, Paraula
             var Errades = ["_","_","_","_","_","_","_"]; //dolentes, Lletres
             var segons = 0;
@@ -149,10 +150,6 @@
             pista = Taula[aleatori].Pista;
             //window.alert("aleatori="  + aleatori + ", paraula=" + paraula + ", pista=" + pista);
             
-            //Carregar base dades penjat.db
-            
-                
-            
             
             //Canviam els diferents literals de la GUI durant l'idioma
             function CanviarIdioma(IdIdioma){
@@ -170,20 +167,41 @@
                 document.getElementById("Sopes").innerHTML = Idioma.Sopes;
                 document.getElementById("pista").innerHTML = Idioma.Pista;
                 document.getElementById("Vides").innerHTML = Idioma.Vides;
-                document.getElementById("Moix").innerHTML = Idioma.Moix;
+                document.getElementById("Set").innerHTML = Idioma.Moix;
                 document.getElementById("Errades").innerHTML = Idioma.Lletres;
                 document.getElementById("Ets").innerHTML = Idioma.Ets;
-                document.getElementById("URLpistes").innerHTML = Idioma.URLpistes;
+                //document.getElementById("URLpistes").innerHTML = Idioma.URLpistes;
                 //document.getElementById("Dita").title = Idioma.Dita1;
                 //document.getElementById("Dita_1").innerHTML = Idioma.Dita + " 1";
                 //document.getElementById("Dita2").title = Idioma.Dita2;
                 //document.getElementById("Dita_2").innerHTML = Idioma.Dita + " 2";
                 //document.getElementById("Dita3").title = Idioma.Dita3;
                 //document.getElementById("Dita_3").innerHTML = Idioma.Dita + " 3";
-                document.getElementById("Credits").innerHTML = Idioma.Credits;
-                //document.getElementById("Scratch").innerHTML = Idioma.YouTube;
+                //document.getElementById("Credits").innerHTML = Idioma.Credits;
                 //document.getElementById("YouTube").innerHTML = Idioma.YouTube;
                 //document.getElementById("Teclat").title = Idioma.Teclat;
+                if (Punts > 0) {
+                    document.getElementById("Punts").innerHTML = Idioma.Puntuacio + " " + Punts;
+                }
+                //Canvi de idioma Crèdits mantenint negreta i enllaços
+                let Credits = "Blog Pere Miquel";
+                let ResultatEnllaçC = Credits.link("https://prosselloe.wordpress.com/");
+                let NegretaC = Idioma.Credits;
+                let ResultatNegretaC = NegretaC.bold();
+                document.getElementById("Credits").innerHTML = ResultatNegretaC + " " + ResultatEnllaçC;
+                
+                //Canvi de idioma URLpistes mantenint negreta i enllaços
+                let URLpistes1 = "Dita 1";
+                let ResultatEnllaçP1 = URLpistes1.link("https://pccd.dites.cat/p/A_la_quinta_forca");
+                let URLpistes2 = "Dita 2";
+                let ResultatEnllaçP2 = URLpistes2.link("https://pccd.dites.cat/p/A_ca_un_penjat%2C_no_hi_anomenis_cordes");
+                let URLpistes3 = "Dita 3";
+                let ResultatEnllaçP3 = URLpistes3.link("https://pccd.dites.cat/p/Setze_jutges_d%27un_jutjat_mengen_fetge_d%27un_penjat");
+                let NegretaP = Idioma.URLpistes;
+                let ResultatNegretaP = NegretaP.bold();
+                document.getElementById("URLpistes").innerHTML = ResultatNegretaP + " " + ResultatEnllaçP1 + " " + ResultatEnllaçP2 + " " + ResultatEnllaçP3;
+                
+                // Escull una nova paraula aleatòriament
                 window.alert("Nova paraula aleatòria / Nueva palabra aleatoria / New random word!");
                 aleatori = Math.floor(Math.random() * Taula.length);
                 paraula = Taula[aleatori].Paraula;
@@ -258,6 +276,12 @@
                     break;
            //Establim el canvi de accents i dieresis a la lletra corresponent    
             }
+                if ((Encerts.indexOf(lletra) != -1) || (Errades.indexOf(lletra) != -1)) {
+                    document.getElementById("disfraz3").hidden = false;
+                    document.getElementById("disfraz2").hidden = true;
+                    document.getElementById("disfraz1").hidden = true;
+                    window.alert(Idioma.Repetida);
+                } else {
                 var pos = paraula.indexOf(lletra);
                 if ((pos !== -1) && (lletra !== "")){
                     //alert(paraula);
@@ -265,7 +289,7 @@
                     document.getElementById("disfraz2").hidden = false;
                     document.getElementById("disfraz3").hidden = true; 
                     document.getElementById("miau").play();
-                    alert("Has encertat!");
+                    alert(Idioma.Encertat);
                     for (var i = pos; i < paraula.length; i++){
                         if (paraula[i] === lletra){
                         Encerts[i] = lletra;
@@ -281,16 +305,16 @@
                         document.getElementById("disfraz3").hidden = true;
                         document.getElementById("boom_cloud").play();
                         document.getElementById("clock_ticking").play();
-                        alert("Has fallat!");
+                        alert(Idioma.Fallat);
                         vides = vides -1;
-                        Errades[7-vides-1] = lletra;
+                        Errades[Vides_dft - Vides] = lletra;
                         document.getElementById("Lletres").innerHTML =  Errades; 
                         MostraImg();
                         if (vides <= 0){
-                            alert("Has fallat tots els intents!");
-                            document.body.style.backgroundImage = "url('img/Jungle.png')";
+                            alert(Idioma.Perdut);
+                            document.body.style.backgroundImage = "url('img/3.png')";
                             document.getElementById("cat-fight").play();
-                            window.alert("En pau descansi – RIP!");
+                            window.alert(Idioma.Descansi);
                             document.getElementById("bell_toll_x3").play();
                             Final();
                         }
@@ -304,18 +328,22 @@
                 
                 else{
                     document.getElementById("clock_ticking").play();
-                    alert("Caràcter incorrecte!");
+                    alert(Idioma.Incorrecte);
                 }
+            }
                if(Encerts.indexOf("_") === -1){
                     alert(Idioma.Guanyat);
                     AmagaImg();
-                    // Calculam i mostram la puntació
-                    Punts = paraula.length * Vides * 10 - document.getElementById("counter").innerHTML;
-                    if (Punts < 0) { Punts = 0; };
-                    document.getElementById("Punts").innerHTML = Idioma.Puntacio + " " + Punts;
-                    document.body.style.backgroundImage = "url('img/Party.png')";
                     document.getElementById("cheer").play();
+                    document.body.style.backgroundImage = 'url("img/Party.png")'
+                    //document.getElementById("algortime").hidden = false;
                     Final();
+                    // Calculam i mostram la puntació
+                    Punts = paraula.length * Vides * 10 - segons;
+                    alert(Punts);
+                    if (Punts < 0) { Punts = 0; };
+                    document.getElementById("Puntuació").innerHTML = Idioma.Puntuacio + " " + Punts;
+  
                 }
                        
            //Si no s'ha complir cap condició de les anteriors, concluim que el valor introduit es un caracter incorrecte  
@@ -331,6 +359,7 @@
             function Final() {
                 document.getElementById("valor").disabled = true;
                 document.getElementById("boto").disabled = true;
+                clearInterval(Interval);
             }
            //Definim la funció que atura el joc quan s'han perdut totes les vides           
             function Inici() {
@@ -396,7 +425,7 @@
                         document.getElementById("disfraz3").hidden = true;
                         document.getElementById("algoritme").hidden = false;
             }
-            
+                const Interval = setInterval(timer, 1000);    
             //Temporitzador
 		function timer(){
                     segons = segons + 1;
@@ -406,9 +435,8 @@
                     }
                     document.getElementById("counter").innerHTML = "Temps: " + minuts + " min " + segons + " s";
 		}
-		setInterval(timer, 1000);         
+		     
             
-    
                 function AlaWeb_SQLite(IdIdioma) {
                     config = {
                     locateFile: filename => `/dist/${filename}`
@@ -438,7 +466,7 @@
                 };
             }
             function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {         
-                window.alert("SQL_TblParaulesPistes IdIdioma = '" + IdIdioma + "'");
+                //window.alert("SQL_TblParaulesPistes IdIdioma = '" + IdIdioma + "'");
                 Taula = TblParaulesPistes;
                 if (Taula.length === 0) {
                     window.alert("Idioma sense paraules/ Idioma sin palabras/ Language without words!");
@@ -450,6 +478,50 @@
                 };
                 //window.alert(Taula[0].Pista);
             }
+            
+            function Sound() { 
+                if (document.getElementById("ButtonSound").src === "img/unmuted.png") {
+                    document.getElementById("ButtonSound").src = "img/muted.png";  
+                } else{ 
+                    document.getElementById("ButtonSound").src = "img/unmuted.png";  
+                };
+            };
+            
+            function MostrarAlgotitme() { 
+                if (document.getElementById("algoritme").hidden === true) {
+                    document.getElementById("algoritme").hidden = false;
+                } else{ 
+                    document.getElementById("algoritme").hidden = true;
+                };
+            };
+            
+            function SumarFons() {
+                if (document.body.style.backgroundImage === 'url("img/1.png")') {
+                    document.body.style.backgroundImage = "url('img/2.png')";
+                } else if (document.body.style.backgroundImage === 'url("img/2.png")') {
+                    document.body.style.backgroundImage = "url('img/3.png')";
+                } else if (document.body.style.backgroundImage === 'url("img/3.png")') {
+                    document.body.style.backgroundImage = "url('img/4.png')";
+                } else if (document.body.style.backgroundImage === 'url("img/4.png")') {
+                    document.body.style.backgroundImage = "url('img/5.png')";
+                } else if (document.body.style.backgroundImage === 'url("img/5.png")') {
+                    document.body.style.backgroundImage = "url('img/1.png')";
+                }
+            };
+            
+            function RestarFons() {
+                if (document.body.style.backgroundImage === 'url("img/1.png")') {
+                    document.body.style.backgroundImage = "url('img/5.png')";
+                } else if (document.body.style.backgroundImage === 'url("img/2.png")') {
+                    document.body.style.backgroundImage = "url('img/1.png')";
+                } else if (document.body.style.backgroundImage === 'url("img/3.png")') {
+                    document.body.style.backgroundImage = "url('img/2.png')";
+                } else if (document.body.style.backgroundImage === 'url("img/4.png")') {
+                    document.body.style.backgroundImage = "url('img/3.png')";
+                } else if (document.body.style.backgroundImage === 'url("img/5.png")') {
+                    document.body.style.backgroundImage = "url('img/4.png')";
+                }
+            };
             
             // Print data  
                 function Print_Data(res) {        
