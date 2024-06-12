@@ -8,15 +8,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/penjat.css">
 	<script src="js/gamma.js"></script>
-        <!--Llibreries
-        -->
+        <!--Llibreries-->
         <script src="js/alasql.js"></script>
         <script src="js/sql.js"></script>
         <link rel="icon" href="img/penjat.ico"/> 
     </head>
     
-    <body style="background-image: url('img/1.png');
-          background-size: 640px 480px; background-repeat: no-repeat" onload="Inici();">
+    <body style="background-image: url('img/1.png'); background-size: 640px 480px; background-repeat: no-repeat" onload="Inici();">
         <h1 id="Versio">Versió γ Joc del Penjat</h1>
         <input type="text" placeholder="Escriu una lletra minúscula" id="valor" maxlength="1">
         <button onclick="Comprovar();" id="boto">Comprovar</button>
@@ -33,9 +31,7 @@
         
         <h2 id="Errades" style="color:red;">Errades:</h2>
         <a style="color:black;" id="Ets" href="https://pccd.dites.cat/p/De_lletres">Ets de lletres?</a>
-        <p style="color:red;" id="Lletres">"_,_,_,_,_,_,_"</p>
-        
-        <p id="Punts"></p>
+        <p style="color:red;" id="Lletres">"_,_,_,_,_,_,_"</p>     
         
         <table>
             <tr>
@@ -54,12 +50,12 @@
                 <td>Fet per/ Hecho por/ Made by: <b>David Janer Llodrà</b></td>
             </tr>
         </table>
-           <!--Cream els texts i estils de la pàgina-->
-           <button id="pista" onclick="alert(pista);">Pista</button> 
-           <!--<button onclick="MostrarCodi();" id="codi">  </button>-->
-           <h4 style="color:black;" id="counter">0</h4>
+          
+        <!--Cream els texts i estils de la pàgina-->
+        <button id="pista" onclick="alert(pista);">Pista</button> 
+        <h4 style="color:black;" id="counter">0</h4>
         <div id='Punts'>
-           <h3 style="color:blue;" id="Puntuació"></h3>
+            <h3 style="color:blue;" id="Puntuació"></h3>
         </div>
            
         <div id='Idiomes'> 
@@ -125,14 +121,18 @@
             <img src="img/disfraz2.png" id="disfraz2" style="width:90px; height: 90px;" title="Correr">
             <img src="img/disfraz3.png" id="disfraz3" style="width:90px; height: 90px;" title="Normal">
         </div>
-           
-        <div id='Teclat'> 
-            <img src="img/keyboard.png" id="teclat" style="width:30px; height: 30px;" title="Teclat">
-        </div>
-           
-        <div id='Sound'>
-             <button onclick="Sound();"><img src="img/unmuted.png" id="ButtonSound" style="width:30px; height: 30px;" title="Unmuted"></button>
-        </div>
+             
+        <div id="Sound"><button id="sons" title="On / Off"
+            onclick="document.getElementById('off').hidden = document.getElementById('on').hidden;
+                     document.getElementById('on').hidden = !document.getElementById('off').hidden;">
+            <img src="img/on.png" id="on"><img src="img/off.png" id="off" hidden></button>
+        </div> 
+        
+        <div id="Img"><button id="imgt" title="On / Off"
+            onclick="document.getElementById('Teclat').hidden = document.getElementById('Teclat').hidden;
+                     document.getElementById('Teclat').hidden = !document.getElementById('Teclat').hidden;">
+            <img src="img/keyboard.png" id="keyboard1"><img src="img/keyboard.png" id="keyboard2" hidden></button>
+        </div> 
            
         <div id='MostrarAlgoritme'>
              <button onclick="MostrarAlgotitme();" id='BotoAlgoritme'>+</button>
@@ -152,6 +152,75 @@
            
         <div id='Algoritme'> 
             <img src="img/ahorcado.jpg" id="algoritme" style="width:280px; height: 270px;" title="Algoritme">   
+        </div>
+        
+          <div id="Teclat" translate="no">
+            <table><strong>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="q" onclick="document.getElementById('valor').value = 'q';">q</button>
+                    <button id="w" onclick="document.getElementById('valor').value = 'w';">w</button>
+                    <button id="e" onclick="document.getElementById('valor').value = 'e';">e</button>
+                    <button id="r" onclick="document.getElementById('valor').value = 'r';">r</button>
+                    <button id="t" onclick="document.getElementById('valor').value = 't';">t</button>
+                    <button id="y" onclick="document.getElementById('valor').value = 'y';">y</button>
+                    <button id="u" onclick="document.getElementById('valor').value = 'u';">u</button>
+                    <button id="i" onclick="document.getElementById('valor').value = 'i';">i</button>
+                    <button id="o" onclick="document.getElementById('valor').value = 'o';">o</button>
+                    <button id="p" onclick="document.getElementById('valor').value = 'p';">p</button>
+                    <!--
+                    <button id="agut" onclick="alert('Sense vocals accentuades!');"
+                            style="color:red" title="Accent Agut">´</button>
+                    -->
+                    <button id="retro" onclick="Retroces();" title="BACKSPACE">←</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;
+                    <button id="a" onclick="document.getElementById('valor').value = 'a';">a</button>
+                    <button id="s" onclick="document.getElementById('valor').value = 's';">s</button>
+                    <button id="d" onclick="document.getElementById('valor').value = 'd';">d</button>
+                    <button id="f" onclick="document.getElementById('valor').value = 'f';">f</button>
+                    <button id="g" onclick="document.getElementById('valor').value = 'g';">g</button>
+                    <button id="h" onclick="document.getElementById('valor').value = 'h';">h</button>
+                    <button id="j" onclick="document.getElementById('valor').value = 'j';">j</button>
+                    <button id="k" onclick="document.getElementById('valor').value = 'k';">k</button>
+                    <button id="l" onclick="document.getElementById('valor').value = 'l';">l</button>
+                    <button id="ñ" onclick="document.getElementById('valor').value = 'ñ';"
+                            style="color:blue">ñ</button>
+                    <!--
+                    <button id="dieresi" onclick="alert('Sense vocals amb dièrsi!');"
+                            style="color:red" title="Dièresi">¨</button>
+                    -->
+                    <button id="intro" onclick="Comprovar();" title="ENTER">┘</button>
+                  </td>          
+                </tr>
+                <tr>
+                  <td>
+                    <button id="shift" onclick="alert('Només lletres minúscules!');"
+                            style="color:red" title="SHIFT">↑</button>
+                    <button id="z" onclick="document.getElementById('valor').value = 'z';">z</button>
+                    <button id="x" onclick="document.getElementById('valor').value = 'x';">x</button>
+                    <button id="c" onclick="document.getElementById('valor').value = 'c';">c</button>
+                    <button id="v" onclick="document.getElementById('valor').value = 'v';">v</button>
+                    <button id="b" onclick="document.getElementById('valor').value = 'b';">b</button>
+                    <button id="n" onclick="document.getElementById('valor').value = 'n';">n</button>
+                    <button id="m" onclick="document.getElementById('valor').value = 'm';">m</button>
+                    <button id="ç" onclick="document.getElementById('valor').value = 'ç';"
+                            style="color:blue">ç</button>
+                    <button id="volat" onclick="document.getElementById('valor').value = '·';"
+                            style="color:blue" title="Punt Volat">·</button>
+                    <button id="guio" onclick="document.getElementById('valor').value = '-';"
+                            style="color:blue" title="Guionet">-</button>
+                    <!--
+                    <button id="greu" onclick="alert('Sense vocals accentuades!');"
+                            style="color:red" title="Accent Greu">`</button>
+                    -->
+                  </td>          
+                </tr>
+            </strong></table>
         </div>
     </body>
     
