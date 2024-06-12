@@ -21,7 +21,7 @@
         
         <h2 id="TParaula">Paraula:</h2>
         <a style="color:black;" id="Sopes" href="https://prosselloe.wordpress.com/2015/05/16/vols-sopes-en-record-dels-nostres-padrins/">Demanes sopes?</a>
-        <p id="Paraula">_,_,_,_,_,_,_</p>
+        <p id="LlEncertades">_,_,_,_,_,_,_</p>
 
         
         <h2 id="Vides">Vides:</h2>
@@ -29,9 +29,9 @@
         <p id="vida">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7</p>
         
         
-        <h2 id="Errades" style="color:red;">Errades:</h2>
+        <h2 id="Errades" onmouseover="this.style.color = 'white'" onmouseout="this.style.color = 'red'" style="color:red;">Errades:</h2>
         <a style="color:black;" id="Ets" href="https://pccd.dites.cat/p/De_lletres">Ets de lletres?</a>
-        <p style="color:red;" id="Lletres">"_,_,_,_,_,_,_"</p>     
+        <p style="color:red;" id="LlErrades">"_,_,_,_,_,_,_"</p>     
         
         <table>
             <tr>
@@ -59,9 +59,9 @@
         </div>
            
         <div id='Idiomes'> 
-            <a id='ca' href="https://z70712-netlify-app.translate.goog/alpha?_x_tr_sl=auto&_x_tr_tl=ca&_x_tr_hl=ca&_x_tr_pto=wapp"><img src="img/ca.png" alt="ca"></a>
-            <a id='es' href="https://z70712-netlify-app.translate.goog/alpha?_x_tr_sl=auto&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=wapp"><img src="img/es.png" alt="es"></a>
-            <a id='en' href="https://z70712-netlify-app.translate.goog/alpha?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp"><img src="img/gb.png" alt="en"></a>
+            <a id='ca' onclick="CanviarIdioma('ca')"><img src="img/ca.png" alt="ca"></a>
+            <a id='es' onclick="CanviarIdioma('es')"><img src="img/es.png" alt="es"></a>
+            <a id='en' onclick="CanviarIdioma('en')"><img src="img/gb.png" id='gb' alt="en"></a>
         </div>
          
         <div id='Diccionaris'> 
@@ -70,7 +70,7 @@
             <a id='dic_en' href="https://www.wordreference.com/definition/"><img src="img/gb.png" alt="diccionari_en"></a>
         </div>
         
-        <select id="IdiomaExtra" onchange="CanviarIdioma(this.value)">
+        <select id="IdiomaExtra" onchange="CanviarIdioma(this.value)" title="Select">
             <option value="en">en</option>
             <option value="fr">fr</option>
             <option value="it">it</option>
@@ -147,7 +147,7 @@
         </div>
         
         <div id='BanderaPista'> 
-            <img src="img/ca.png" id="BanderaPistaImg" title="BanderaPista">
+            <img src="img/ca.png" id="Bander" title="BanderaPista">
         </div>
            
         <div id='Algoritme'> 
