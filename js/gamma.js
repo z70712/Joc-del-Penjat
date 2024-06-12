@@ -102,7 +102,7 @@ const Idiomes_dft = [
         "Descansi": "Rest in peace - RIP!",
         "Puntuacio": "Score:"
     }
-]
+];
 var Idiomes = Idiomes_dft;
 var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma === "ca");
 
@@ -155,8 +155,136 @@ pista = Taula[aleatori].Pista;
 //Posam subguions per encerts
 for (var i = 0; i < paraula.length; i++) {
         Encerts[i] = "_";
-    }
+}
 
+//Funció principal comprovar
+function Comprovar() {
+     //Es comprova si no s'ha introduit algun caràcter
+    if (document.getElementById("valor").value === ""){
+        alert("Introdueix algun caràcter per jugar!");                    
+    }
+    
+    //Asignam valor introduit a variable lletra i netejam
+    var lletra = document.getElementById("valor").value;
+    document.getElementById("valor").value = "";
+    
+    //Passam valor introduit a minúscula
+    lletra = lletra.toLowerCase();
+
+    //Feim canvi de lletra si té accents o dieresis
+    switch (lletra) {
+        case "á":
+        case "à":
+            lletra = "a";
+            break;
+        case "é":
+        case "è":
+            lletra = "e";
+            break;
+        case "í":
+        case "ï":
+            lletra = "i";
+            break;
+        case "ó":
+        case "ò":
+            lletra = "o";
+            break;
+        case "ú":
+        case "ü":
+            lletra = "u";
+            break;
+    }
+    
+    //Comporvam si la lletra introduida ja s'ha introduit anteriorment
+    if ((Encerts.indexOf(lletra) !== -1) || (Errades.indexOf(lletra) !== -1)) {
+        document.getElementById("disfraz3").hidden = false;
+        document.getElementById("disfraz2").hidden = true;
+        document.getElementById("disfraz1").hidden = true;
+        window.alert(Idioma.Repetida);
+    } else {
+    var pos = paraula.indexOf(lletra);
+
+    //Comprovam si la lletra es troba dins la paraula
+    if ((pos !== -1) && (lletra !== "")){
+        //alert(paraula);
+        document.getElementById("disfraz1").hidden = true;
+        document.getElementById("disfraz2").hidden = false;
+        document.getElementById("disfraz3").hidden = true; 
+        if (document.getElementById('off').hidden) {
+                document.getElementById("miau").play();
+        }
+        alert(Idioma.Encertat);
+        for (var i = pos; i < paraula.length; i++){
+            if (paraula[i] === lletra){
+            Encerts[i] = lletra;
+        }
+        }
+        document.getElementById("LlEncertades").innerHTML = Encerts; 
+
+    //Sinó, s'ha fallat amb la lletra
+    }else if (((lletra >= "a") && (lletra <= "z")) ||
+        (lletra === "ñ") || (lletra === "-") ||
+        (lletra === "ç") || (lletra === "·")) {
+            document.getElementById("disfraz1").hidden = false;                            
+            document.getElementById("disfraz2").hidden = true;
+            document.getElementById("disfraz3").hidden = true;
+            if (document.getElementById('off').hidden) {
+                 document.getElementById("boom_cloud").play();
+            }
+            if (document.getElementById('off').hidden) {
+                document.getElementById("clock_ticking").play();
+            }
+            alert(Idioma.Fallat);
+            //Es resta la vida
+            Errades[Vides_dft - Vides] = lletra;
+            document.getElementById("LlErrades").innerHTML =  Errades; 
+            Vides = Vides - 1;
+            MostraImg();
+            //Es comprova si era la última vida
+            if (Vides <= 0){
+                alert(Idioma.Perdut);
+                document.body.style.backgroundImage = "url('img/3.png')";
+                if (document.getElementById('off').hidden) {
+                    document.getElementById("cat-fight").play();
+                }
+                window.alert(Idioma.Descansi);
+                if (document.getElementById('off').hidden) {
+                    document.getElementById("bell_toll_x3").play();
+                }  
+                Final();
+            }
+            //Si vides és menor que 3, es canvia el color a vermell 
+            if (Vides <= 3){
+                document.getElementById("vida").style.color = "red";
+            }
+            document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vides;     
+    }else{
+        //Si no s'ha complit cap condició, el caràcter és incorrecte
+        if (document.getElementById('off').hidden) {
+                    document.getElementById("clock_ticking").play();
+        } 
+        alert(Idioma.Incorrecte);
+    }
+    }
+    
+     //Es comprova si ja s'han encertat totes les lletres
+    if(Encerts.indexOf("_") === -1){
+        alert(Idioma.Guanyat);
+        AmagaImg();
+        if (document.getElementById('off').hidden) {
+                    document.getElementById("cheer").play();
+        }
+        document.body.style.backgroundImage = 'url("img/Party.png")'
+        //document.getElementById("algortime").hidden = false;
+        Final();
+        // Calculam i mostram la puntació
+        Punts = paraula.length * Vides * 10 - segons;
+        alert(Punts);
+        if (Punts < 0) { Punts = 0; };
+        document.getElementById("Puntuació").innerHTML = Idioma.Puntuacio + " " + Punts;
+    }
+}
+    
 //Canviam els diferents literals de la GUI durant l'idioma
 function CanviarIdioma(IdIdioma){
     if((IdIdioma !== "ca") && (IdIdioma !== "es")) {
@@ -222,352 +350,248 @@ function CanviarIdioma(IdIdioma){
     for (var i = 0; i < paraula.length; i++) {
         Encerts[i] = "_";
     }
-    document.getElemenyById("paraula").innerHTML = Encerts;
+    document.getElementById("LlEncertades").innerHTML = Encerts;
     
     //Marcam cada espai per fallar amb un "_" en funció de les vides 
     for (var i = 0; i < Vides_dft - Vides; i++) {
         Errades[i] = "_";
     }
-    document.getElemenyById("lletres").innerHTML = Errades;
+    document.getElementById("LlErrades").innerHTML = Errades;
+    
     //Tornam a establir vides
-    Vides = Vides_dft;
-    document.getElemenyById("vides").innerHTML = 
+    Vides = Vides_dft; 
+    document.getElementById("vida").innerHTML = 
         "&nbsp;&nbsp;&nbsp;\n\
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vides;
-    //AmagaForca();
-    //document.getElemenyById("disfraz3").hidden = false;
-
-    //Canvi de bandera pista
-    if (IdIdioma_ant === "en") { IdIdioma_ant = "gb"; }
-    document.getElemenyById("BanderaPista").src = "img/" + IdIdioma_ant + ".png";
+    MostraImg();
+    document.getElementById("disfraz3").hidden = false;
+    
+    //Canvi de bandera pista 
+    if (IdIdioma_ant === "en") { 
+        IdIdioma_ant = "gb"; 
+    }
+    document.getElementById("Bander").src = "img/" + IdIdioma_ant + ".png";
+    
     //Sobreescrivim l'idioma anterior
     IdIdioma_ant = IdIdioma;
-    
+   
     //Canvi de bandera idioma
     if ((IdIdioma !== "ca") && (IdIdioma !== "es")) {
         //Per a l'idioma "en = English" la bandera es la de "gb = Great Britain"
-        if (IdIdioma === "en") { IdIdioma = "gb"; }
-            document.getElemenyById("gb").src = "img/" + IdIdioma + ".png";
+        if (IdIdioma === "en") { 
+            IdIdioma = "gb"; 
+        }
+    document.getElementById("gb").src = "img/" + IdIdioma + ".png";
     }
-    }
-
+}
     
-    //Funció principal comprovar
-    function Comprovar() {
-         //Es comprova si no s'ha introduit algun caràcter
-        if (document.getElementById("valor").value === ""){
-            alert("Introdueix algun caràcter per jugar!");                    
-        }
-        //Asignam valor introduit a variable lletra i netejam
-        var lletra = document.getElementById("valor").value;
-        document.getElementById("valor").value = "";
-        //Passam valor introduit a minúscula
-        lletra = lletra.toLowerCase();
+//Afegim la possibilitat d'executar accions amb la tecla intro
+window.onkeypress = function(evobject) { 
+    if (evobject.keyCode === 13 || evobject.keyCode === 32 ) {
+        Comprovar();
+    }
+};
 
-        //Feim canvi de lletra si té accents o dieresis
-        switch (lletra) {
-            case "á":
-            case "à":
-                lletra = "a";
-                break;
-            case "é":
-            case "è":
-                lletra = "e";
-                break;
-            case "í":
-            case "ï":
-                lletra = "i";
-                break;
-            case "ó":
-            case "ò":
-                lletra = "o";
-                break;
-            case "ú":
-            case "ü":
-                lletra = "u";
-                break;
-        }
-        //Comporvam si la lletra introduida ja s'ha introduit anteriorment
-        if ((Encerts.indexOf(lletra) !== -1) || (Errades.indexOf(lletra) !== -1)) {
-            document.getElementById("disfraz3").hidden = false;
+//Definim la funció del final, quan s'ha acabat el joc i s'atura el joc
+function Final() {
+    document.getElementById("valor").disabled = true;
+    document.getElementById("boto").disabled = true;
+    clearInterval(Interval);
+}
+
+//Definim la funció de l'inici, posam les coses a lloc     
+function Inici() {
+    document.getElementById("ahorcado_0").hidden = true;
+    document.getElementById("ahorcado_1").hidden = true;
+    document.getElementById("ahorcado_2").hidden = true;
+    document.getElementById("ahorcado_3").hidden = true;
+    document.getElementById("ahorcado_4").hidden = true;
+    document.getElementById("ahorcado_5").hidden = true;
+    document.getElementById("ahorcado_6").hidden = true;
+    document.getElementById("disfraz1").hidden = true;
+    document.getElementById("disfraz2").hidden = true;
+    document.getElementById("disfraz3").hidden = false;
+    document.getElementById("algoritme").hidden = true;
+    document.getElementById("Teclat").hidden = true;
+    document.getElementById('inici').play();
+    document.getElementById("LlEncertades").innerHTML = Encerts;
+    document.getElementById("LlErrades").innerHTML = Errades;
+    document.getElementById("Audios").hidden = true;
+    alert("Let's go: a la quinta forca / al quinto pino / to the boondocks?");
+}
+
+//Definim la funció que canvia les imatges del penjat quan es fallen lletres
+function MostraImg() {
+    switch (Vides) {
+        case 6:
+            document.getElementById("ahorcado_6").hidden = false;
+            break;
+         case 5:
+            document.getElementById("ahorcado_5").hidden = false;
+            document.getElementById("ahorcado_6").hidden = true;
+            break;
+         case 4:
+            document.getElementById("ahorcado_4").hidden = false;
+            document.getElementById("ahorcado_5").hidden = true;
+            break;
+         case 3:
+            document.getElementById("ahorcado_3").hidden = false;
+            document.getElementById("ahorcado_4").hidden = true;
+            break;
+         case 2:
+            document.getElementById("ahorcado_2").hidden = false;
+            document.getElementById("ahorcado_3").hidden = true;
+            break;
+         case 1:
+            document.getElementById("ahorcado_1").hidden = false;
+            document.getElementById("ahorcado_2").hidden = true;
+            break;
+         case 0:
+            document.getElementById("ahorcado_0").hidden = false;
+            document.getElementById("ahorcado_1").hidden = true;
+            break;
+    }
+}
+
+//Definim la funció que amaga les imatges quan s'acaba el joc
+function AmagaImg() {
+            document.getElementById("ahorcado_6").hidden = true;
+            document.getElementById("ahorcado_5").hidden = true;
+            document.getElementById("ahorcado_4").hidden = true;
+            document.getElementById("ahorcado_3").hidden = true;
+            document.getElementById("ahorcado_2").hidden = true;
+            document.getElementById("ahorcado_1").hidden = true;
+            document.getElementById("ahorcado_0").hidden = true;
+            document.getElementById("disfraz1").hidden = true;                            
             document.getElementById("disfraz2").hidden = true;
-            document.getElementById("disfraz1").hidden = true;
-            window.alert(Idioma.Repetida);
-        } else {
-        var pos = paraula.indexOf(lletra);
-        
-        //Comprovam si la lletra es troba dins la paraula
-        if ((pos !== -1) && (lletra !== "")){
-            //alert(paraula);
-            document.getElementById("disfraz1").hidden = true;
-            document.getElementById("disfraz2").hidden = false;
-            document.getElementById("disfraz3").hidden = true; 
-            document.getElementById("miau").play();
-            alert(Idioma.Encertat);
-            for (var i = pos; i < paraula.length; i++){
-                if (paraula[i] === lletra){
-                Encerts[i] = lletra;
-            }
-            }
-        document.getElementById("Paraula").innerHTML = Encerts; 
-        
-        //Sinó, s'ha fallat amb la lletra
-        }else if (((lletra >= "a") && (lletra <= "z")) ||
-            (lletra === "ñ") || (lletra === "-") ||
-            (lletra === "ç") || (lletra === "·")) {
-                document.getElementById("disfraz1").hidden = false;                            
-                document.getElementById("disfraz2").hidden = true;
-                document.getElementById("disfraz3").hidden = true;
-                document.getElementById("boom_cloud").play();
-                document.getElementById("clock_ticking").play();
-                alert(Idioma.Fallat);
-                //Es resta la vida
-                vides = vides -1;
-                Errades[Vides_dft - Vides] = lletra;
-                document.getElementById("Lletres").innerHTML =  Errades; 
-                MostraImg();
-                //Es comprova si era la última vida
-                if (vides <= 0){
-                    alert(Idioma.Perdut);
-                    document.body.style.backgroundImage = "url('img/3.png')";
-                    document.getElementById("cat-fight").play();
-                    window.alert(Idioma.Descansi);
-                    document.getElementById("bell_toll_x3").play();
-                    Final();
-                }
-                //Si vides és menor que 3, es canvia el color a vermell 
-                if (vides <= 3){
-                    document.getElementById("vida").style.color = "red";
-                }
-                document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;     
-        }else{
-            //Si no s'ha complit cap condició, el caràcter és incorrecte
-            document.getElementById("clock_ticking").play();
-            alert(Idioma.Incorrecte);
-        }
-        }
-         //Es comprova si ja s'han encertat totes les lletres
-        if(Encerts.indexOf("_") === -1){
-            alert(Idioma.Guanyat);
-            AmagaImg();
-            document.getElementById("cheer").play();
-            document.body.style.backgroundImage = 'url("img/Party.png")'
-            //document.getElementById("algortime").hidden = false;
-            Final();
-            // Calculam i mostram la puntació
-            Punts = paraula.length * Vides * 10 - segons;
-            alert(Punts);
-            if (Punts < 0) { Punts = 0; };
-            document.getElementById("Puntuació").innerHTML = Idioma.Puntuacio + " " + Punts;
-        }
-    }
-    
-    //Afegim la possibilitat d'executar accions amb la tecla intro
-    window.onkeypress = function(evobject) { 
-        if (evobject.keyCode === 13 || evobject.keyCode === 32 ) {
-            Comprovar();
-        }
-    };
-   
-    //Definim la funció del final, quan s'ha acabat el joc i s'atura el joc
-    function Final() {
-        document.getElementById("valor").disabled = true;
-        document.getElementById("boto").disabled = true;
-        clearInterval(Interval);
-    }
-    
-    //Definim la funció de l'inici, posam les coses a lloc     
-    function Inici() {
-        document.getElementById("ahorcado_0").hidden = true;
-        document.getElementById("ahorcado_1").hidden = true;
-        document.getElementById("ahorcado_2").hidden = true;
-        document.getElementById("ahorcado_3").hidden = true;
-        document.getElementById("ahorcado_4").hidden = true;
-        document.getElementById("ahorcado_5").hidden = true;
-        document.getElementById("ahorcado_6").hidden = true;
-        document.getElementById("disfraz1").hidden = true;
-        document.getElementById("disfraz2").hidden = true;
-        document.getElementById("disfraz3").hidden = false;
-        document.getElementById("algoritme").hidden = true;
-        document.getElementById('inici').play();
-        document.getElementById("Audios").hidden = true;
-        document.getElemenyById("paraula").innerHTML = Encerts;
-        document.getElementById("Lletres").innerHTML =  Errades;
-        alert("Let's go: a la quinta forca / al quinto pino / to the boondocks?");
-    }
-    
-    //Definim la funció que canvia les imatges del penjat quan es fallen lletres
-    function MostraImg() {
-        switch (vides) {
-            case 6:
-                document.getElementById("ahorcado_6").hidden = false;
-                break;
-             case 5:
-                document.getElementById("ahorcado_5").hidden = false;
-                document.getElementById("ahorcado_6").hidden = true;
-                break;
-             case 4:
-                document.getElementById("ahorcado_4").hidden = false;
-                document.getElementById("ahorcado_5").hidden = true;
-                break;
-             case 3:
-                document.getElementById("ahorcado_3").hidden = false;
-                document.getElementById("ahorcado_4").hidden = true;
-                break;
-             case 2:
-                document.getElementById("ahorcado_2").hidden = false;
-                document.getElementById("ahorcado_3").hidden = true;
-                break;
-             case 1:
-                document.getElementById("ahorcado_1").hidden = false;
-                document.getElementById("ahorcado_2").hidden = true;
-                break;
-             case 0:
-                document.getElementById("ahorcado_0").hidden = false;
-                document.getElementById("ahorcado_1").hidden = true;
-                break;
-        }
-    }
-    
-    //Definim la funció que amaga les imatges quan s'acaba el joc
-    function AmagaImg() {
-                document.getElementById("ahorcado_6").hidden = true;
-                document.getElementById("ahorcado_5").hidden = true;
-                document.getElementById("ahorcado_4").hidden = true;
-                document.getElementById("ahorcado_3").hidden = true;
-                document.getElementById("ahorcado_2").hidden = true;
-                document.getElementById("ahorcado_1").hidden = true;
-                document.getElementById("ahorcado_0").hidden = true;
-                document.getElementById("disfraz1").hidden = true;                            
-                document.getElementById("disfraz2").hidden = true;
-                document.getElementById("disfraz3").hidden = true;
-                document.getElementById("algoritme").hidden = false;
-    }
-    
-    //Cream un temporitzador que canvii de segons a minuts i definim l'interval com a constant per poder-lo aturar quan s'acaba el joc
-    const Interval = setInterval(timer, 1000);    
-    function timer(){
-        segons = segons + 1;
-        if (segons >= 60){
-            minuts = minuts + 1;
-            segons = 0;
-        }
-        document.getElementById("counter").innerHTML = "Temps: " + minuts + " min " + segons + " s";
-    }
-
-    //Definim la funció que agafa les taules corresponents de la base de dades
-    function AlaWeb_SQLite(IdIdioma) {
-        config = {
-        locateFile: filename => `/dist/${filename}`
-        };
-        //Recuperam de lam base de dades els textosgui èr tots els idiomes
-        alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
-                SELECT * FROM TblTextosGUI;',
-            [], function(idiomes) {SQL_TblTextosGUI(IdIdioma, idiomes.pop());}
-            //[], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
-        );
-        alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
-                SELECT Paraula, Pista \n\
-                FROM TblParaules INNER JOIN TblPistes \n\
-                ON TblParaules.IdPista = TblPistes.IdPista \n\
-                WHERE TblParaules.IdIdioma = "' + IdIdioma + '";',
-            //[], function(taula) {Print_Data(Taula = taula.pop());}
-            [], function(taula) {SQL_TblParaulesPistes(IdIdioma, taula.pop());}
-        );
-    }
-    
-    //Definim la funció que canvia els textos de la gui segons l'idioma triat
-    function SQL_TblTextosGUI(IdIdioma, TblTextosGUI) {    
-        Idiomes = TblTextosGUI;
-        if (Idiomes.length === 0) {Idiomes = Idiomes_dft;};
-            if (Idiomes.find(Idioma => Idioma.IdIdioma === IdIdioma) === undefined){
-            window.alert("GUI: Idioma no trobat/ Idioma no encontrado/ Language not found!");
-            Idiomes = Idiomes_dft;
-        };
-    }
-    
-    //Definim la funció que canvia les paraules i les pistes segons l'idioma triat
-    function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {         
-        //window.alert("SQL_TblParaulesPistes IdIdioma = '" + IdIdioma + "'");
-        Taula = TblParaulesPistes;
-        if (Taula.length === 0) {
-            window.alert("Idioma sense paraules/ Idioma sin palabras/ Language without words!");
-            Taula = Taula_dft;
-            IdIdioma = "ca";
-            IdIdioma_ant = IdIdioma;
-        } else {
-             //window.alert("Idioma sense paraules / Idioma sin palabras / Language words = '" + IdIdioma + "'");
-        }
-        //window.alert(Taula[0].Pista);
-    }
-    
-    //Definim la funció que gestiona el canvi del so i el imatge de l'altaveu
-    function Sound() { 
-        if (document.getElementById("ButtonSound").src === "img/unmuted.png") {
-            document.getElementById("ButtonSound").src = "img/muted.png";  
-        } else{ 
-            document.getElementById("ButtonSound").src = "img/unmuted.png";  
-        };
-    };
-    
-    //Definim la funció que mostra i amaga l'algoritme quan es clica el boto
-    function MostrarAlgotitme() { 
-        if (document.getElementById("algoritme").hidden === true) {
+            document.getElementById("disfraz3").hidden = true;
             document.getElementById("algoritme").hidden = false;
-        } else{ 
-            document.getElementById("algoritme").hidden = true;
-        };
-    };
-    
-    //Definim la funció que augmenta el fons quan es clica el boto de més
-    function SumarFons() {
-        if (document.body.style.backgroundImage === 'url("img/1.png")') {
-            document.body.style.backgroundImage = "url('img/2.png')";
-        } else if (document.body.style.backgroundImage === 'url("img/2.png")') {
-            document.body.style.backgroundImage = "url('img/3.png')";
-        } else if (document.body.style.backgroundImage === 'url("img/3.png")') {
-            document.body.style.backgroundImage = "url('img/4.png')";
-        } else if (document.body.style.backgroundImage === 'url("img/4.png")') {
-            document.body.style.backgroundImage = "url('img/5.png')";
-        } else if (document.body.style.backgroundImage === 'url("img/5.png")') {
-            document.body.style.backgroundImage = "url('img/1.png')";
-        }
-    };
+}
 
-    //Definim la funció que disminueix el fons quan es clica el boto de menys
-    function RestarFons() {
-        if (document.body.style.backgroundImage === 'url("img/1.png")') {
-            document.body.style.backgroundImage = "url('img/5.png')";
-        } else if (document.body.style.backgroundImage === 'url("img/2.png")') {
-            document.body.style.backgroundImage = "url('img/1.png')";
-        } else if (document.body.style.backgroundImage === 'url("img/3.png")') {
-            document.body.style.backgroundImage = "url('img/2.png')";
-        } else if (document.body.style.backgroundImage === 'url("img/4.png")') {
-            document.body.style.backgroundImage = "url('img/3.png')";
-        } else if (document.body.style.backgroundImage === 'url("img/5.png")') {
-            document.body.style.backgroundImage = "url('img/4.png')";
-        }
-    };
-    
-    // Funció per tractar la tecla de retrocés, BACKSPACE, del teclat en pantalla
-    function Retroces() {
-        var temporal = document.getElementById('lletra').value;
-        temporal = temporal.substring(0, temporal.length - 1);
-        document.getElementById('lletra').value = temporal;
+//Cream un temporitzador que canvii de segons a minuts i definim l'interval com a constant per poder-lo aturar quan s'acaba el joc
+const Interval = setInterval(timer, 1000);    
+function timer(){
+    segons = segons + 1;
+    if (segons >= 60){
+        minuts = minuts + 1;
+        segons = 0;
     }
+    document.getElementById("counter").innerHTML = "Temps: " + minuts + " min " + segons + " s";
+}
 
-    //Definim la funció que mostra els valors de la base de dades, però no l'usam durant el joc
-    // Print data  
-        function Print_Data(res) {        
-            for (var i in res)
-            {
-            // console.log("row " + i);
-            // document.getElementById("res").innerHTML += "<br>";
-                for (var j in res[i])
-                {
-                // console.log(" " + res[i][j]);
-                // document.getElementById("res").innerHTML += res[i][j] + ", ";
-                window.alert("res[" + i + "][" +j + "] = " + res[i][j]);
-                }
-            }
-        }       
+//Definim la funció que agafa les taules corresponents de la base de dades
+function AlaWeb_SQLite(IdIdioma) {
+    config = {
+    locateFile: filename => `/dist/${filename}`
+    };
+    //Recuperam de lam base de dades els textosgui èr tots els idiomes
+    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
+            SELECT * FROM TblTextosGUI;',
+        [], function(idiomes) {SQL_TblTextosGUI(IdIdioma, idiomes.pop());}
+        //[], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
+    );
+    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
+            SELECT Paraula, Pista \n\
+            FROM TblParaules INNER JOIN TblPistes \n\
+            ON TblParaules.IdPista = TblPistes.IdPista \n\
+            WHERE TblParaules.IdIdioma = "' + IdIdioma + '";',
+        //[], function(taula) {Print_Data(Taula = taula.pop());}
+        [], function(taula) {SQL_TblParaulesPistes(IdIdioma, taula.pop());}
+    );
+}
+
+//Definim la funció que canvia els textos de la gui segons l'idioma triat
+function SQL_TblTextosGUI(IdIdioma, TblTextosGUI) {    
+    Idiomes = TblTextosGUI;
+    if (Idiomes.length === 0) {Idiomes = Idiomes_dft;};
+        if (Idiomes.find(Idioma => Idioma.IdIdioma === IdIdioma) === undefined){
+        window.alert("GUI: Idioma no trobat/ Idioma no encontrado/ Language not found!");
+        Idiomes = Idiomes_dft;
+    };
+}
+
+//Definim la funció que canvia les paraules i les pistes segons l'idioma triat
+function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {         
+    //window.alert("SQL_TblParaulesPistes IdIdioma = '" + IdIdioma + "'");
+    Taula = TblParaulesPistes;
+    if (Taula.length === 0) {
+        window.alert("Idioma sense paraules/ Idioma sin palabras/ Language without words!");
+        Taula = Taula_dft;
+        IdIdioma = "ca";
+        IdIdioma_ant = IdIdioma;
+    } else {
+         //window.alert("Idioma sense paraules / Idioma sin palabras / Language words = '" + IdIdioma + "'");
+    }
+    //window.alert(Taula[0].Pista);
+}
+
+//Definim la funció que gestiona el canvi del so i el imatge de l'altaveu
+function Sound() { 
+    if (document.getElementById("ButtonSound").src === "img/unmuted.png") {
+        document.getElementById("ButtonSound").src = "img/muted.png";  
+    } else{ 
+        document.getElementById("ButtonSound").src = "img/unmuted.png";  
+    };
+};
+
+//Definim la funció que mostra i amaga l'algoritme quan es clica el boto
+function MostrarAlgotitme() { 
+    if (document.getElementById("algoritme").hidden === true) {
+        document.getElementById("algoritme").hidden = false;
+    } else{ 
+        document.getElementById("algoritme").hidden = true;
+    };
+};
+
+//Definim la funció que augmenta el fons quan es clica el boto de més
+function SumarFons() {
+    if (document.body.style.backgroundImage === 'url("img/1.png")') {
+        document.body.style.backgroundImage = "url('img/2.png')";
+    } else if (document.body.style.backgroundImage === 'url("img/2.png")') {
+        document.body.style.backgroundImage = "url('img/3.png')";
+    } else if (document.body.style.backgroundImage === 'url("img/3.png")') {
+        document.body.style.backgroundImage = "url('img/4.png')";
+    } else if (document.body.style.backgroundImage === 'url("img/4.png")') {
+        document.body.style.backgroundImage = "url('img/5.png')";
+    } else if (document.body.style.backgroundImage === 'url("img/5.png")') {
+        document.body.style.backgroundImage = "url('img/1.png')";
+    }
+};
+
+//Definim la funció que disminueix el fons quan es clica el boto de menys
+function RestarFons() {
+    if (document.body.style.backgroundImage === 'url("img/1.png")') {
+        document.body.style.backgroundImage = "url('img/5.png')";
+    } else if (document.body.style.backgroundImage === 'url("img/2.png")') {
+        document.body.style.backgroundImage = "url('img/1.png')";
+    } else if (document.body.style.backgroundImage === 'url("img/3.png")') {
+        document.body.style.backgroundImage = "url('img/2.png')";
+    } else if (document.body.style.backgroundImage === 'url("img/4.png")') {
+        document.body.style.backgroundImage = "url('img/3.png')";
+    } else if (document.body.style.backgroundImage === 'url("img/5.png")') {
+        document.body.style.backgroundImage = "url('img/4.png')";
+    }
+};
+
+// Funció per tractar la tecla de retrocés, BACKSPACE, del teclat en pantalla
+function Retroces() {
+    var temporal = document.getElementById('valor').value;
+    temporal = temporal.substring(0, temporal.length - 1);
+    document.getElementById('valor').value = temporal;
+}
+
+//Definim la funció que mostra els valors de la base de dades, però no l'usam durant el joc
+// Print data  
+function Print_Data(res) {        
+    for (var i in res)
+    {
+    // console.log("row " + i);
+    // document.getElementById("res").innerHTML += "<br>";
+        for (var j in res[i])
+        {
+        // console.log(" " + res[i][j]);
+        // document.getElementById("res").innerHTML += res[i][j] + ", ";
+        window.alert("res[" + i + "][" +j + "] = " + res[i][j]);
+        }
+    }
+}       
