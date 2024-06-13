@@ -133,6 +133,7 @@ var Encerts = []; //bones, Paraula
 var Errades = ["_","_","_","_","_","_","_"]; //dolentes, Lletres
 var segons = 0;
 var minuts = 0;
+var idbo = "";
 
 //Llista de paraules per al joc i les pistes associades
 var paraules = ["cordes","fetge", "forca", "jutges", "jutjat", "mengen", "penjat", "quinta", "setze"];
@@ -279,7 +280,6 @@ function Comprovar() {
         Final();
         // Calculam i mostram la puntació
         Punts = paraula.length * Vides * 10 - segons;
-        alert(Punts);
         if (Punts < 0) { Punts = 0; };
         document.getElementById("Puntuació").innerHTML = Idioma.Puntuacio + " " + Punts;
     }
